@@ -1,0 +1,35 @@
+@import '../../../stylesheets/helpers/variables.scss';
+@import '../../../stylesheets/helpers/mixins.scss';
+@import '../../../stylesheets/helpers/grid.scss';
+
+// :global {
+//     main {
+//         background-color: lightblue;
+//         font-family: sans-serif;
+//     }
+// }
+//
+// .main {
+//     background-color: lightgreen;
+//     font-family: sans-serif;
+// }
+
+
+.main {
+    min-width: 320px;
+    min-height: 100%;
+    right: 0;
+    left: 0;
+
+    position: relative;
+
+	@include transition(all 0.5s ease);
+
+    &.isactive {
+        right: -$width-menu;
+    	left: $width-menu;
+
+        overflow: hidden;
+    	@include transition(all 0.5s ease);
+    }
+}

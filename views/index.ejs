@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <%-title%>
+    <%-meta%>
+    <% if (typeof appCss !== 'undefined') {%>
+        <link rel="stylesheet" href="<%=appCss%>">
+    <%}%>
+    <%-link%>
+    </head>
+    <body>
+        <div id="app"><%- typeof html === 'undefined' ? '' : html %></div>
+        <script>
+            window.__reduxInitialState = <%-JSON.stringify(store.getState()) %>;
+        </script>
+        <% if (typeof appJs !== 'undefined') {%>
+            <script src="<%=appJs%>"></script>
+        <%}%>
+    </body>
+</html>

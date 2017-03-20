@@ -1,0 +1,42 @@
+// Color
+
+$color-white: #FFF;
+$color-lt-gray: #BBB;
+$color-dk-gray: #444;
+$color-black: #000;
+
+$color-lt-green: #64FAC8;
+$color-md-green: #5EECBD;
+$color-dk-green: #6C9;
+$color-trs-green: rgba($color-md-green, .65);
+$color-blk-green: #51A37A;
+
+$color-behance: #1F6FEE;
+$color-dribbble: #EA4C89;
+$color-instagram: #E4405F;
+$color-linkedin: #1B86BC;
+$color-github: #231F20;
+
+$color-body: $color-dk-gray;
+$color-main: $color-md-green;
+$color-error: #FA2326;
+$color-success: $color-dk-green; // #78D287
+
+// Fonts
+
+$font-header: 'Montserrat', "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$font-body: 'Lato', "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+
+$font-size-header-large: 46px;
+$font-size-header: 32px;
+$font-size-header-small: 24px;
+$font-size-body: 18px;
+$font-size-body-small: 16px;
+$font-size-body-xsmall: 12px;
+$font-size-body-xxsmall: 11px;
+
+// Structure
+
+$width-gutter: 24px;
+$width-site: 780px;
+$width-menu: 244px - $width-gutter;

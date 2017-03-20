@@ -1,0 +1,196 @@
+@import '../../../stylesheets/helpers/variables.scss';
+@import '../../../stylesheets/helpers/mixins.scss';
+@import '../../../stylesheets/helpers/grid.scss';
+
+.heartmenubutton {
+    position: relative;
+    display: table;
+
+    width: 40px;
+    height: 40px;
+
+    background-color: $color-md-green;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    @include border-radius(50%);
+
+    .hearticon {
+        display: table-cell;
+        vertical-align: middle;
+
+        color: $color-white;
+
+        font-size: 140%;
+        text-align: center;
+    }
+
+    &:hover {
+        background-color: $color-dk-green;
+
+        @include transition(all 0.5s ease);
+    }
+}
+
+.heartmenu {
+
+    float: right;
+
+    margin-top: $width-gutter/2;
+    margin-bottom: -$width-gutter/2;
+
+    clear: both;
+
+    @media #{$small-only} {
+        position: absolute;
+
+        top: 40px;
+        right: -1px;
+        bottom: auto;
+        left: -1px;
+
+        border: 1px solid $color-white;
+        border-bottom: 10px solid $color-white;
+
+        ul {
+            width: 100% !important;
+            height: 0;
+            @include transition(height 0.5s ease);
+
+            > li  {
+               // width: 20% !important;
+           }
+        }
+
+        &.is-active {
+            ul {
+                height: 40px;
+                @include transition(height 0.5s ease);
+            }
+        }
+    }
+
+    @media #{$medium-up} {
+        width: 0%;
+        height: 40px;
+
+        margin-top: 0;
+        margin-right: $width-gutter/2;
+
+        clear: none;
+
+        @include transition(width 0.5s ease);
+
+        &.is-active {
+             width: calc(100% - 52px);
+             @include transition(width 0.5s ease);
+        }
+    }
+
+    overflow: hidden;
+
+     &.is-active {
+         margin-bottom: 0;
+
+         ul > li {
+         }
+     }
+
+     ul {
+
+         width: 200px;
+         font-size: 0;
+
+         background-color: $color-white;
+
+         > li {
+
+             display: inline-block;
+
+             min-width: 40px;
+             width: 40px;
+             line-height: 40px;
+
+             margin: 0;
+
+             text-align: center;
+             background-color: $color-md-green;
+
+             @include transition(background-color 0.5s ease, opacity 0.5s ease);
+
+             &:hover {
+                 @include transition(background-color 0.5s ease, opacity 0.5s ease);
+             }
+
+             > a {
+                 display: block;
+
+                 color: $color-white;
+             }
+
+             &.behance {
+                 background-color: $color-behance;
+                 &:hover {
+                     background-color: darken($color-behance, 10%);
+                 }
+             }
+
+             &.instagram {
+                background:
+                /////// Use radial gradients to get the rounded
+                /////// gradient effect in each corner
+
+                // left bottom
+                radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%),
+                radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%),
+                // left top
+                radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%),
+                radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%),
+                //  right top
+                radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%),
+                radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%),
+                // right bottom
+                radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent),
+
+                /////// create a base coat to smooth
+                /////// corner gradients
+                linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
+                background-color: $color-instagram;
+                &:hover {
+                    opacity: .9;
+                    // background-color: darken($color-instagram, 10%);
+                }
+             }
+
+             &.dribbble {
+                 background-color: $color-dribbble;
+                 &:hover {
+                     background-color: darken($color-dribbble, 10%);
+                 }
+             }
+
+             &.github {
+                 background-color: $color-github;
+                 &:hover {
+                     background-color: lighten($color-github, 10%);
+                 }
+             }
+
+             &.linkedin {
+                 background-color: $color-linkedin;
+                 &:hover {
+                     background-color: darken($color-linkedin, 10%);
+                 }
+             }
+
+             &.paper-plane {
+                 background-color: $color-md-green;
+                 &:hover {
+                     background-color: darken($color-md-green, 10%);
+                 }
+             }
+         }
+     }
+}

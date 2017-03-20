@@ -1,0 +1,140 @@
+html,
+body {
+	font-family: $font-body;
+}
+
+h1 {
+	font-size: $font-size-header;
+	@media #{$medium-up} {
+		font-size: $font-size-header-large;
+		line-height: 48px;
+	}
+
+	font-weight: 900;
+}
+
+h2 {
+	font-size: $font-size-header-small;
+	@media #{$medium-up} {
+		font-size: $font-size-header;
+	}
+}
+
+h3 {
+	font-size: $font-size-header-small;
+	@media #{$medium-up} {
+		font-size: $font-size-header;
+	}
+}
+
+h4 {
+	font-size: $font-size-body;
+	@media #{$medium-up} {
+		font-size: $font-size-header-small;
+	}
+
+	font-weight: 600;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $font-header;
+
+	@include transition(all 0.2s ease);
+}
+
+p, ul li, ol li {
+	font-size: $font-size-body-small;
+	@media #{$medium-up} {
+		font-size: $font-size-body;
+	}
+}
+
+ul, ol {
+	li {
+		margin: $width-gutter/2.5 0 ;
+	}
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+	+ p, + h1, + h2, + h3, + h4, + h5, + h6 {
+		margin: $width-gutter 0;
+	}
+}
+
+ul {
+	+ h1, + h2, + h3, + h4, + h5, + h6 {
+		margin-top: $width-gutter;
+	}
+}
+
+p {
+	&.text-xxsmall {
+		font-size: $font-size-body-xxsmall;
+	}
+	&.text-xsmall {
+		font-size: $font-size-body-xsmall;
+	}
+	&.text-small {
+		font-size: $font-size-body-small;
+	}
+}
+
+.content {
+	a {
+		color: inherit;
+
+		text-decoration: none;
+		opacity: .65;
+
+		@include transition(all 0.2s ease);
+
+		&:hover {
+			opacity: 1;
+			@include transition(all 0.2s ease);
+		}
+
+		&.btn {
+			opacity: 1;
+		}
+	}
+	strong {
+		font-size: 90%;
+		font-weight: 900;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+	}
+}
+
+.text-header {
+	font-family: $font-header;
+}
+
+.text-body {
+	font-family: $font-body;
+}
+
+.text-light {
+	font-weight: 400;
+}
+
+.text-upper {
+	text-transform: uppercase;
+}
+
+.no-margin {
+	margin: 0;
+}
+
+// Alignment
+
+.align-left {
+	text-align: left;
+}
+
+.align-center {
+	text-align: center;
+}
+
+.align-right {
+	text-align: right;
+}
