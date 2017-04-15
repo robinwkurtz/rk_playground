@@ -18,12 +18,14 @@ export class Header extends Component {
 		super(props);
 		this.clickToggleMenu = this.clickToggleMenu.bind(this);
 	}
-	clickToggleMenu(dispatch) {
+	clickToggleMenu(e, dispatch) {
+		e.preventDefault();
 		return (
 			 dispatch(toggleMenu())
 		)
 	}
 	render() {
+		const { dispatch, menu } = this.props
 		return (
 			<header className={ style.header }>
 	            <div className="row full flush">
@@ -38,7 +40,10 @@ export class Header extends Component {
 	                    </Link>
 	                </div>
 	                <div className="column float">
-	                    <a href="#" onClick={ () => { this.clickToggleMenu(this.props.dispatch) } } className={ classNames(style.menubutton, (this.props.menu.open) ? style.isactive : '' ) }>
+	                    <a href="#"
+							onClick={ (e) => { this.clickToggleMenu(e, dispatch) } }
+							className={ classNames(style.menubutton, (menu.open) ? style.isactive : '' ) }
+						>
 	                        <div className={ style.burger }>
 	                            <div className={ style.burgericon }>Menu</div>
 	                        </div>
@@ -46,7 +51,7 @@ export class Header extends Component {
 	                </div>
 					<Social { ...this.props } />
 	            </div>
-	            <div className={ classNames(style.menu, (this.props.menu.open) ? style.isactive : '' ) }>
+	            <div className={ classNames(style.menu, (menu.open) ? style.isactive : '' ) }>
 					<Navigation { ...this.props } />
 	                <div className={ style.copyright }>
 	                    Copyright
