@@ -2,19 +2,6 @@
 @import '../../../stylesheets/helpers/mixins.scss';
 @import '../../../stylesheets/helpers/grid.scss';
 
-// :global {
-//     main {
-//         background-color: lightblue;
-//         font-family: sans-serif;
-//     }
-// }
-//
-// .main {
-//     background-color: lightgreen;
-//     font-family: sans-serif;
-// }
-
-
 .main {
     min-width: 320px;
     min-height: 100%;
@@ -32,4 +19,11 @@
         overflow: hidden;
     	@include transition(all 0.5s ease);
     }
+}
+
+.body {
+    position: relative;
+
+    background-color: $color-md-green;
+    color: $color-white;
 }
