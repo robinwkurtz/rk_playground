@@ -16,12 +16,21 @@ export function fetchMenus() {
 }
 
 export function fetchMenu(id) {
+	console.log('fetchMenu', id);
 	return fetch(`${API_URL_MENUS}/${id}`)
 	.then(res => res.json());
 }
 
-export function fetchPages(slug, language) {
-	return fetch(`${API_URL}pages?` + querystring.stringify({ slug, lang: language }))
+export function fetchPages(language) {
+	return fetch(API_URL + 'pages?' + querystring.stringify({ lang: language }))
+	.then(res => res.json())
+	.then(res => res[0]);
+}
+
+export function fetchPage(slug) {
+	console.log('fetchPage', slug);
+	const pathname = (slug) ? slug : 'home';
+	return fetch(API_URL + 'pages?' + querystring.stringify({ slug: pathname, lang: language }))
 	.then(res => res.json())
 	.then(res => res[0]);
 }
