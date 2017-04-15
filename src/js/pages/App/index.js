@@ -11,6 +11,7 @@ import Header from 'header';
 import LanguageSwitcher from 'languageSwitcher';
 
 import { load as loadMenu } from 'menu';
+import { loadSingle } from 'pages';
 
 import style from './index.scss';
 import gstyles from 'gstyles';
@@ -22,19 +23,18 @@ It also reacts to changes in the current language and reconfigures the IntlProvi
 Finally, it displays the Loading bar, the base Helmet config for <head> and the router children
 */
 class App extends Component {
-	static propTypes = {
-		menus: React.PropTypes.object,
-		i18n: React.PropTypes.object
-	};
 	render() {
-		const { i18n, children, menu } = this.props;
+		const { i18n, children, menu, page } = this.props;
+		console.log('App', this.props);
 		return (
 			<IntlProvider locale={ i18n.language } messages={ i18n.messages }>
-				<main className={ classNames((menu.open) ? style.isactive : '') }>
+				<main className={ classNames((menu.open) ? [style.main, style.isactive] : style.main) }>
 					<Loading />
 					<Helmet { ...config.app.head[i18n.language] } />
 					<Header { ...this.props } />
-					{ children }
+					<div className={ style.body }>
+						{ children }
+					</div>
 				</main>
 			</IntlProvider>
 		);
@@ -42,13 +42,15 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-	return { i18n: state.i18n, menu: state.menu }
+	return { i18n: state.i18n, menu: state.menu, page: state.pages.page }
 };
 
 export default asyncConnect([
 	{
-		promise: ({ store: { dispatch } }) => dispatch(loadMenu(2)),
-		deferred: true
+		deferred: true,
+		promise: ({ store: { dispatch }, location }) => dispatch(
+			loadMenu(2), loadSingle(location.pathname.replace(/^\/|\/$/g, '')
+		))
 	}
 ])(
 	connect(
