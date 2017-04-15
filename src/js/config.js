@@ -1,38 +1,22 @@
 // App configuration for both server and client side. For now it mostly defines the <head> values
 
 module.exports = {
-	API_URL: 'http://localhost/robinwkurtz_playground_wp/wp-json/wp/v2/',
-	API_URL_MENUS: 'http://localhost/robinwkurtz_playground_wp/wp-json/wp-api-menus/v2/menus',
+	API_URL: 'http://robin.local/personal/robinwkurtz_playground_wp/wp-json/wp/v2/',
+	API_URL_MENUS: 'http://robin.local/personal/robinwkurtz_playground_wp/wp-json/wp-api-menus/v2/menus',
 	app: {
 		head: {
-			en: {
-				defaultTitle: 'Robin\'s Playground',
-				titleTemplate: '%s | Robin\'s Playground',
-				meta: [
-					{ charset: 'utf-8' },
-					{ name: 'description', content: 'meta description' },
-					{ property: 'og:site_name', content: 'Robin\'s Playground' },
-					{ property: 'og:image', content: '' },
-					{ property: 'og:title', content: '' },
-					{ property: 'og:description', content: 'meta description' },
-					{ property: 'og:site', content: '' },
-					{ property: 'og:creator', content: '' }
-				]
-			},
-			fr: {
-				defaultTitle: 'Robin\'s Playground',
-				titleTemplate: '%s | Robin\'s Playground',
-				meta: [
-					{ charset: 'utf-8' },
-					{ name: 'description', content: 'meta description' },
-					{ property: 'og:site_name', content: 'Robin\'s Playground' },
-					{ property: 'og:image', content: '' },
-					{ property: 'og:title', content: '' },
-					{ property: 'og:description', content: 'meta description' },
-					{ property: 'og:site', content: '' },
-					{ property: 'og:creator', content: '' }
-				]
-			}
+			defaultTitle: 'Robin\'s Playground',
+			titleTemplate: '%s | Robin\'s Playground',
+			meta: [
+				{ charset: 'utf-8' },
+				{ name: 'description', content: 'meta description' },
+				{ property: 'og:site_name', content: 'Robin\'s Playground' },
+				{ property: 'og:image', content: 'imagepath' },
+				{ property: 'og:title', content: 'Robin\'s Playground' },
+				{ property: 'og:description', content: 'meta description' },
+				{ property: 'og:site', content: 'http://robinwkurtz.com' },
+				{ property: 'og:creator', content: 'Robin Kurtz <robinwkurtz@gmail.com>' }
+			]
 		}
 	},
 	socialList: [
