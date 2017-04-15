@@ -1,92 +1,109 @@
 import * as api from '../../api-client';
 
-/*
-This module takes care of loading pages by slug.
-It stores the page data in its sub-state, using the slug as a key
-
-We export a load action creator. It dispatches a thunk that uses the API to load a page.
-*/
-
-// TYPES
+const LOAD_PAGES = 'LOAD_PAGES';
+const LOAD_PAGES_SUCCESS = 'LOAD_PAGES_SUCCESS';
+const LOAD_PAGES_FAIL = 'LOAD_PAGES_FAIL';
 
 const LOAD_PAGE = 'LOAD_PAGE';
 const LOAD_PAGE_SUCCESS = 'LOAD_PAGE_SUCCESS';
-export const LOAD_PAGE_FAIL = 'LOAD_PAGE_FAIL';
+const LOAD_PAGE_FAIL = 'LOAD_PAGE_FAIL';
 
 // ACTIONS
 
-const _isLoaded = (state, slug) => {
-    return state.pages && state.pages[slug] && state.pages[slug].loaded;
+const _isLoaded = (state) => {
+    return state.pages && state.pages.loaded;
 }
 
-export const load = (slug) => {
+export const load = () => {
     return (dispatch, getState) => {
-        if (_isLoaded(getState(), slug)) {
+        if (_isLoaded(getState())) {
             return;
         }
 
-        const language = getState().i18n.language; // this feels hackish, gotta be a better way...?
+		const language = getState().i18n.language; // this feels hackish, gotta be a better way...?
 
-        dispatch({ type: LOAD_PAGE, slug });
-        return api.fetchPage(slug, language)
+        dispatch({ type: LOAD_PAGES });
+        return api.fetchPages(language)
         .then(
-            result => {
-                if (!result) {
-                    /*
-                    Our API call completes successfully even if there's no result (404). Let's change this here!
-                    The LOAD_PAGE_FAIL action will also be picked up by the ssr reducer to help the server return 404
-                    */
-                    return dispatch({ type: LOAD_PAGE_FAIL, slug, error: 404 });
-                }
-
-                return dispatch({ type: LOAD_PAGE_SUCCESS, slug, result })
-            }
+            result => dispatch({ type: LOAD_PAGES_SUCCESS, result })
         )
         .catch(
-            error => dispatch({ type: LOAD_PAGE_FAIL, slug, error })
+            error => dispatch({ type: LOAD_PAGES_FAIL, error })
         );
-    }
+    };
+};
+
+export const loadSingle = (slug) => {
+    console.log('loadSingle', slug);
+    return (dispatch) => {
+        dispatch({ type: LOAD_PAGE });
+        return api.fetchPage(slug)
+        .then(
+            result => dispatch({ type: LOAD_PAGE_SUCCESS, result })
+        )
+        .catch(
+            error => dispatch({ type: LOAD_PAGE_FAIL, error })
+        );
+    };
 };
 
 // REDUCERS
 
-const INITIAL_STATE = {};
+const INITIAL_STATE = {
+    loaded: false,
+    page: {}
+};
 
-//@TODO: implement re-fetching of possibly outdated pages
+/*
+This module takes care of loading pages data.
+
+We export a load action creator. It dispatches a thunk that uses the API to load a page.
+*/
+//@TODO: implement re-fetching of possibly outdated student data
+
 export default (state = INITIAL_STATE, action = {}) => {
     switch (action.type) {
 
-        case LOAD_PAGE:
+        case LOAD_PAGES:
         return {
             ...state,
-            [action.slug]: {
-                ...(state[action.slug] || {}),
-                loading: true
-            }
+            loading: true
+        };
+
+        case LOAD_PAGES_SUCCESS:
+        return {
+            ...state,
+            loading: false,
+            loaded: true,
+            data: action.result,
+            error: null
+        };
+
+        case LOAD_PAGES_FAIL:
+        return {
+            ...state,
+            loading: false,
+            loaded: false,
+            data: null,
+            error: action.error
         };
 
         case LOAD_PAGE_SUCCESS:
         return {
             ...state,
-            [action.slug]: {
-                ...(state[action.slug] || {}),
-                loading: false,
-                loaded: true,
-                data: action.result,
-                error: null
+            page: {
+                ...state.page,
+                [action.result.slug]: action.result
             }
         };
 
-        case LOAD_PAGE_FAIL:
+		case LOAD_PAGE_FAIL:
         return {
             ...state,
-            [action.slug]: {
-                ...(state[action.slug] || {}),
-                loading: false,
-                loaded: false,
-                data: null,
-                error: action.error
-            }
+            loading: false,
+            loaded: false,
+            data: null,
+            error: action.error
         };
     }
     // Default
