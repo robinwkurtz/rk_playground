@@ -3,9 +3,9 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 import { bindActionCreators } from 'redux';
-import ui from 'redux-ui';
 import classNames from 'classnames';
 
+import config from 'config';
 import Navigation from 'navigation';
 import Social from 'social';
 
@@ -13,7 +13,7 @@ import { toggleMenu } from 'menu';
 
 import style from './index.scss';
 
-export class Header extends Component {
+export default class Header extends Component {
 	constructor(props) {
 		super(props);
 		this.clickToggleMenu = this.clickToggleMenu.bind(this);
@@ -32,15 +32,16 @@ export class Header extends Component {
 	                <div className="column float">
 	                    <Link className={ style.logo } to="/">
 	                        <div className="show-for-medium-up">
-	                            Robin Kurtz
+	                            { config.app.logo.full }
 	                        </div>
 	                        <div className="show-for-small-only">
-	                            RK
+	                            { config.app.logo.short }
 	                        </div>
 	                    </Link>
 	                </div>
 	                <div className="column float">
-	                    <a href="#"
+	                    <a
+							href="#"
 							onClick={ (e) => { this.clickToggleMenu(e, dispatch) } }
 							className={ classNames(style.menubutton, (menu.open) ? style.isactive : '' ) }
 						>
@@ -61,10 +62,3 @@ export class Header extends Component {
 		)
 	}
 }
-
-export default asyncConnect([
-	{
-		promise: ({ store: { dispatch } }) => dispatch(),
-		deferred: true
-	}
-])(connect()(Header));
