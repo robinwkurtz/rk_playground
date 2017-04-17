@@ -1,7 +1,7 @@
 {
-    "name": "decodemtl-wp-frontend",
+    "name": "robinwkurtz_playground",
     "version": "0.0.1",
-    "description": "Frontend for DecodeMTL.com running off WordPress API",
+    "description": "Frontend for robinwkurtz.com running off WordPress API",
     "main": "app-server.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
