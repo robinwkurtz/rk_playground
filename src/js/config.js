@@ -4,6 +4,10 @@ module.exports = {
 	API_URL: 'http://robin.local/personal/robinwkurtz_playground_wp/wp-json/wp/v2/',
 	API_URL_MENUS: 'http://robin.local/personal/robinwkurtz_playground_wp/wp-json/wp-api-menus/v2/menus',
 	app: {
+		logo: {
+			full: 'Robin Kurtz',
+			short: 'RK'
+		},
 		head: {
 			defaultTitle: 'Robin\'s Playground',
 			titleTemplate: '%s | Robin\'s Playground',
@@ -48,6 +52,7 @@ module.exports = {
 		{
 			link: '/contact',
 			title: 'Contact',
+			icon: 'paper-plane',
 			target: '_self'
 		}
 	]
