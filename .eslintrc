@@ -1,7 +1,7 @@
 {
-  "extends": "rallycoding",
-  "rules": {
-    "arrow-body-style": 0,
-    "default-case": 0
+    "extends": "rallycoding",
+    "rules": {
+        "arrow-body-style": 0,
+        "default-case": 0
     }
 }
