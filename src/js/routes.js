@@ -6,7 +6,6 @@ import HomePage from './pages/HomePage/';
 import GeneralPage from './pages/GeneralPage/';
 import LostPage from './pages/LostPage/';
 
-import { switchLanguage } from 'i18n';
 import { closeMenu } from 'menu';
 
 /*
@@ -23,14 +22,12 @@ export default function createRoutes(store) {
             component={App}
             onChange={() => store.dispatch(closeMenu())}
         >
-            <Route onEnter={() => store.dispatch(switchLanguage('en'))}>
-                <IndexRoute component={HomePage} />
-                <Route path="about-me" component={GeneralPage} />
-                <Route path="what-i-do" component={GeneralPage} />
-                <Route path="curriculum-vitae" component={GeneralPage} />
-                <Route path="say-hello" component={GeneralPage} />
-                <Route path="*" component={LostPage} />
-            </Route>
+            <IndexRoute component={HomePage} />
+            <Route path="about-me" component={GeneralPage} />
+            <Route path="what-i-do" component={GeneralPage} />
+            <Route path="curriculum-vitae" component={GeneralPage} />
+            <Route path="say-hello" component={GeneralPage} />
+            <Route path="*" component={LostPage} />
         </Route>
     );
 }

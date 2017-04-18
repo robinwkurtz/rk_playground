@@ -3,7 +3,6 @@ import { routerReducer } from 'react-router-redux';
 import { reducer as reduxAsyncConnect } from 'redux-connect';
 import { reducer as uiReducer } from 'redux-ui'
 
-import i18nReducer from './i18n';
 import ssrReducer from './ssr';
 import pagesReducer from './pages';
 import menuReducer from './menu';
@@ -19,6 +18,5 @@ export default combineReducers({
     ui: uiReducer,
     pages: pagesReducer,
     menu: menuReducer,
-    i18n: i18nReducer,
     ssr: ssrReducer
 });

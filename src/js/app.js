@@ -29,11 +29,6 @@ const store = makeStore(browserHistory, window.__reduxInitialState);
 const history = syncHistoryWithStore(browserHistory, store);
 const routes = createRoutes(store);
 
-// Manually loading french data
-import { addLocaleData } from 'react-intl';
-import frLocaleData from 'react-intl/locale-data/fr';
-addLocaleData(frLocaleData);
-
 /*
 The router is wrapped with a provider. This makes it easier to get access to the global state.
 ReduxAsyncConnect kicks off the data loading process -- if any -- right before React and the router want to mount a component.

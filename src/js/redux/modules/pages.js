@@ -20,10 +20,8 @@ export const load = () => {
             return;
         }
 
-		const language = getState().i18n.language; // this feels hackish, gotta be a better way...?
-
         dispatch({ type: LOAD_PAGES });
-        return api.fetchPages(language)
+        return api.fetchPages()
         .then(
             result => dispatch({ type: LOAD_PAGES_SUCCESS, result })
         )
