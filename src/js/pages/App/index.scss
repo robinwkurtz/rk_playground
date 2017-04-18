@@ -2,8 +2,38 @@
 @import '../../../stylesheets/helpers/mixins.scss';
 @import '../../../stylesheets/helpers/grid.scss';
 
-.main {
-    min-width: 320px;
+.html,
+.body {
+    min-width: 320px - $width-gutter*2;
+
+    color: $color-body;
+    font-family: $font-body;
+
+    @include box-sizing(border-box);
+    @include font-smoothing;
+}
+
+.html {
+    height: 100%;
+    padding: $width-gutter !important;
+
+    overflow: hidden;
+
+    &:after {
+        content: '';
+        position: fixed;
+
+        top: 0;
+        right: 0;
+        bottom: 0;
+
+        width: $width-gutter;
+
+        background-color: $color-white;
+    }
+}
+
+.body {
     min-height: 100%;
     right: 0;
     left: 0;
@@ -12,6 +42,28 @@
 
 	@include transition(all 0.5s ease);
 
+    &:before,
+    &:after {
+        content: '';
+        position: fixed;
+
+        right: 0;
+        left: 0;
+
+        height: $width-gutter;
+
+        background-color: $color-white;
+    }
+
+    &:before {
+        top: 0;
+        bottom: auto;
+    }
+    &:after {
+        top: auto;
+        bottom: 0;
+    }
+
     &.isactive {
         right: -$width-menu;
     	left: $width-menu;
@@ -19,11 +71,25 @@
         overflow: hidden;
     	@include transition(all 0.5s ease);
     }
-}
 
-.body {
-    position: relative;
+    .site {
+        display: table;
+        width: 100%;
+        height: calc(100vh - #{$width-gutter*2});
 
-    background-color: $color-md-green;
-    color: $color-white;
+        background-attachment: fixed;
+        background-image: url('../../../images/pattern-geo.svg');
+        background-color: $color-md-green;
+        background-repeat: repeat;
+        background-position: center;
+
+        color: $color-white;
+
+        > .main {
+            display: table-cell;
+            vertical-align: middle;
+
+            padding: $width-gutter*5 $width-gutter/2 $width-gutter*2 $width-gutter/2;
+        }
+    }
 }

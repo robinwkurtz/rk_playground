@@ -1,3 +1,5 @@
+import gstyles from 'gstyles';
+
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
@@ -12,23 +14,23 @@ import { load as loadMenu } from 'menu';
 import { loadSingle } from 'pages';
 
 import style from './index.scss';
-import gstyles from 'gstyles';
 
 class App extends Component {
 	render() {
 		const { children, menu, page } = this.props;
-		console.log('App', this.props);
 		return (
-			<IntlProvider locale={ i18n.language } messages={ i18n.messages }>
-				<main className={ classNames((menu.open) ? [style.main, style.isactive] : style.main) }>
-					<Loading />
-					<Helmet { ...config.app.head } />
-					<Header { ...this.props } />
-					<div className={ style.body }>
-						{ React.cloneElement(children, { page }) }
+			<main className={style.html}>
+				<div className={ classNames((menu.open) ? [style.body, style.isactive] : style.body) }>
+					<div className={style.site}>
+						<Loading />
+						<Helmet { ...config.app.head } />
+						<Header { ...this.props } />
+						<div className={ classNames(style.main, 'content') }>
+							{ React.cloneElement(children, { page }) }
+						</div>
 					</div>
-				</main>
-			</IntlProvider>
+				</div>
+			</main>
 		);
 	}
 }
@@ -40,9 +42,16 @@ const mapStateToProps = state => {
 export default asyncConnect([
 	{
 		deferred: true,
-		promise: ({ store: { dispatch }, location }) => dispatch(
-			loadMenu(2), loadSingle(location.pathname.replace(/^\/|\/$/g, '')
-		))
+		promise: ({ store: { dispatch }, location }) => {
+			const slug = location.pathname.replace(/^\/|\/$/g, '') || 'home';
+			return dispatch(loadSingle(slug));
+		}
+	},
+	{
+		deferred: true,
+		promise: ({ store: { dispatch } }) => {
+			return dispatch(loadMenu(2));
+		}
 	}
 ])(
 	connect(
