@@ -5,7 +5,9 @@ import * as api from '../../api-client';
 const LOAD_MENU = 'LOAD_MENU';
 const LOAD_MENU_SUCCESS = 'LOAD_MENU_SUCCESS';
 const LOAD_MENU_FAIL = 'LOAD_MENU_FAIL';
+const CLOSE_MENU = 'CLOSE_MENU';
 const TOGGLE_MENU = 'TOGGLE_MENU';
+const TOGGLE_HEART_MENU = 'TOGGLE_HEART_MENU';
 
 // ACTIONS
 
@@ -30,9 +32,21 @@ export const load = ($id) => {
 	};
 };
 
+export const closeMenu = () => {
+    return {
+        type: CLOSE_MENU
+    };
+};
+
 export const toggleMenu = () => {
     return {
         type: TOGGLE_MENU
+    }
+}
+
+export const toggleHeartMenu = () => {
+    return {
+        type: TOGGLE_HEART_MENU
     }
 }
 
@@ -41,16 +55,29 @@ export const toggleMenu = () => {
 const INITIAL_STATE = {
 	loaded: false,
 	data: [],
-    open: false
+    open: false,
+    heart: false
 };
 
 export default (state = INITIAL_STATE, action = {}) => {
 	switch (action.type) {
 
+        case CLOSE_MENU:
+        return {
+            ...state,
+            open: false
+        };
+
         case TOGGLE_MENU:
         return {
             ...state,
             open: (state.open) ? false : true
+        }
+
+        case TOGGLE_HEART_MENU:
+        return {
+            ...state,
+            heart: (state.heart) ? false : true
         }
 
 		case LOAD_MENU:
