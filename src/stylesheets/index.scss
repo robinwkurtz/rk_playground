@@ -1,7 +1,13 @@
+// @font-face must not be wrapped in :global
+@import './helpers/font';
+
+// Set all base styles as globals via :global {}
 :global {
     @import './helpers/reset',
     './helpers/variables',
     './helpers/mixins',
     './helpers/grid',
-    './helpers/typography';
+    './helpers/fontello',
+    './helpers/typography',
+    './helpers/animation';
 }
