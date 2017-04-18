@@ -17,7 +17,8 @@ var configuration = {
 	},
 	output: {
 		path: path.resolve(rootDir, 'build/assets'),
-		publicPath: '/assets/',
+		// publicPath: '/assets/',
+		publicPath: 'http://localhost:4200/server/',
 		filename: '[name].[hash].js',
 		chunkFilename: '[name].[hash].js'
 	},
@@ -33,6 +34,10 @@ var configuration = {
 				loaders: ['babel']
 			},
 			{
+				test: /\.(woff|woff2|eot|ttf|svg)(\?.*$|$)/,
+				loader : 'url?prefix=font/&limit=10000'
+			},
+			{
 				test: /\.(scss|css)$/,
 				loaders: [
 					'style',
@@ -41,13 +46,11 @@ var configuration = {
 			},
 			{
 				test: /\.(jpg|gif|png)$/,
-				loaders: ['url-loader?limit=10000']
+				loaders: ['url?limit=10000']
 			}
 		]
 	},
-	postcss: function() {
-		return [precss, autoprefixer];
-	},
+	postcss: [precss, autoprefixer],
 	progress: true,
 	resolve: {
 		alias: {
