@@ -3,6 +3,8 @@
 @import '../../../stylesheets/helpers/grid.scss';
 
 .heartmenubutton {
+    float: right;
+
     position: relative;
     display: table;
 
@@ -32,6 +34,16 @@
 
         @include transition(all 0.5s ease);
     }
+
+    &.isactive {
+        @include rotate(-90deg);
+        :global {
+            .css-bounce {
+                -webkit-animation-name: none;
+                animation-name: none;
+            }
+        }
+    }
 }
 
 .heartmenu {
@@ -60,11 +72,11 @@
             @include transition(height 0.5s ease);
 
             > li  {
-               // width: 20% !important;
-           }
+                width:16.6666666667% !important;
+            }
         }
 
-        &.is-active {
+        &.isactive {
             ul {
                 height: 40px;
                 @include transition(height 0.5s ease);
@@ -83,61 +95,57 @@
 
         @include transition(width 0.5s ease);
 
-        &.is-active {
-             width: calc(100% - 52px);
-             @include transition(width 0.5s ease);
+        &.isactive {
+            width: calc(100% - 52px);
+            @include transition(width 0.5s ease);
         }
     }
 
     overflow: hidden;
 
-     &.is-active {
-         margin-bottom: 0;
+    &.isactive {
+        margin-bottom: 0;
+    }
 
-         ul > li {
-         }
-     }
+    ul {
 
-     ul {
+        width: 240px;
+        font-size: 0;
 
-         width: 200px;
-         font-size: 0;
+        background-color: $color-white;
 
-         background-color: $color-white;
+        > li {
 
-         > li {
+            display: inline-block;
 
-             display: inline-block;
+            min-width: 40px;
+            width: 40px;
+            line-height: 40px;
 
-             min-width: 40px;
-             width: 40px;
-             line-height: 40px;
+            margin: 0;
 
-             margin: 0;
+            text-align: center;
+            background-color: $color-md-green;
 
-             text-align: center;
-             background-color: $color-md-green;
+            @include transition(background-color 0.5s ease, opacity 0.5s ease);
 
-             @include transition(background-color 0.5s ease, opacity 0.5s ease);
+            &:hover {
+                @include transition(background-color 0.5s ease, opacity 0.5s ease);
+            }
 
-             &:hover {
-                 @include transition(background-color 0.5s ease, opacity 0.5s ease);
-             }
+            > a {
+                display: block;
+                color: $color-white;
+            }
 
-             > a {
-                 display: block;
+            &:global(.behance) {
+                background-color: $color-behance;
+                &:hover {
+                    background-color: darken($color-behance, 10%);
+                }
+            }
 
-                 color: $color-white;
-             }
-
-             &.behance {
-                 background-color: $color-behance;
-                 &:hover {
-                     background-color: darken($color-behance, 10%);
-                 }
-             }
-
-             &.instagram {
+            &:global(.instagram) {
                 background:
                 /////// Use radial gradients to get the rounded
                 /////// gradient effect in each corner
@@ -162,35 +170,35 @@
                     opacity: .9;
                     // background-color: darken($color-instagram, 10%);
                 }
-             }
+            }
 
-             &.dribbble {
-                 background-color: $color-dribbble;
-                 &:hover {
-                     background-color: darken($color-dribbble, 10%);
-                 }
-             }
+            &:global(.dribbble) {
+                background-color: $color-dribbble;
+                &:hover {
+                    background-color: darken($color-dribbble, 10%);
+                }
+            }
 
-             &.github {
-                 background-color: $color-github;
-                 &:hover {
-                     background-color: lighten($color-github, 10%);
-                 }
-             }
+            &:global(.github) {
+                background-color: $color-github;
+                &:hover {
+                    background-color: lighten($color-github, 10%);
+                }
+            }
 
-             &.linkedin {
-                 background-color: $color-linkedin;
-                 &:hover {
-                     background-color: darken($color-linkedin, 10%);
-                 }
-             }
+            &:global(.linkedin) {
+                background-color: $color-linkedin;
+                &:hover {
+                    background-color: darken($color-linkedin, 10%);
+                }
+            }
 
-             &.paper-plane {
-                 background-color: $color-md-green;
-                 &:hover {
-                     background-color: darken($color-md-green, 10%);
-                 }
-             }
-         }
-     }
+            &:global(.paper-plane) {
+                background-color: $color-md-green;
+                &:hover {
+                    background-color: darken($color-md-green, 10%);
+                }
+            }
+        }
+    }
 }
