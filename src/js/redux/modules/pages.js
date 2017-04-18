@@ -34,7 +34,6 @@ export const load = () => {
 };
 
 export const loadSingle = (slug) => {
-    console.log('loadSingle', slug);
     return (dispatch) => {
         dispatch({ type: LOAD_PAGE });
         return api.fetchPage(slug)
