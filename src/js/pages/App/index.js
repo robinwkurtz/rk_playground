@@ -12,6 +12,9 @@ import Header from 'header';
 
 import { load as loadMenu } from 'menu';
 import { loadSingle } from 'pages';
+import { load as loadSiteInfo } from 'site';
+
+import favicon from '../../../images/icon/favicon.ico';
 
 import style from './index.scss';
 
@@ -23,7 +26,16 @@ class App extends Component {
 				<div className={ classNames((menu.open) ? [style.body, style.isactive] : style.body) }>
 					<div className={style.site}>
 						<Loading />
-						<Helmet { ...config.app.head } />
+						<Helmet
+							titleTemplate={config.app.head.titleTemplate}
+							defaultTitle={config.app.head.defaultTitle}
+						>
+							<html lang="en" />
+							<meta charSet="utf-8" />
+							{/* <base target="_blank" href={baseUrl} /> */}
+							<meta property="og:type" content="page" />
+							<link rel="icon" type="image/x-icon" href={favicon} />
+						</Helmet>
 						<Header { ...this.props } />
 						<div className={ classNames(style.main, 'content') }>
 							{ React.cloneElement(children, { page }) }
@@ -36,7 +48,11 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-	return { menu: state.menu, page: state.pages.page }
+	return {
+		menu: state.menu,
+		page: state.pages.page,
+		site: state.site
+	}
 };
 
 export default asyncConnect([
@@ -51,6 +67,12 @@ export default asyncConnect([
 		deferred: true,
 		promise: ({ store: { dispatch } }) => {
 			return dispatch(loadMenu(2));
+		}
+	},
+	{
+		deferred: true,
+		promise: ({ store: { dispatch } }) => {
+			return dispatch(loadSiteInfo());
 		}
 	}
 ])(
