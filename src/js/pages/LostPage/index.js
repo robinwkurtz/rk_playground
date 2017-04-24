@@ -10,8 +10,11 @@ class LostPage extends Component {
 		const p = this.props.page.lost;
 		const content = { __html: p.content.rendered };
 		return (
-			<div className='inner'>
-				<div dangerouslySetInnerHTML={content} />
+			<div className="row">
+				<div
+					className="column"
+					dangerouslySetInnerHTML={content}
+				/>
 			</div>
 		);
 	}
