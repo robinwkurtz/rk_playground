@@ -23,29 +23,34 @@ export default class Social extends Component {
 		)
 	}
 	render() {
-		const { dispatch, menu } = this.props;
+		const { dispatch, menu, site } = this.props;
+		const social = site.data.site_information_social[0];
 		return (
 			<div className="column float">
 				<a
 					href="#"
 					onClick={ (e) => { this.clickToggleHeartMenu(e, dispatch) } }
 					className={ classNames(style.heartmenubutton, (menu.heart) ? style.isactive : '' ) }
+					title="Social"
 				>
 					<div className={ classNames(style.hearticon, 'css-bounce', 'icon-font', 'icon-heart') }></div>
 				</a>
 				<div className={ classNames(style.heartmenu, (menu.heart) ? style.isactive : '' ) }>
 					<ul>
 						{
-							socialList.map(function(item) {
-								if (item && item.title) {
-									const slug = (item.icon) ? item.icon : item.title.toLowerCase();
+							social.map(function(item, index) {
+								const title = item.title;
+								const icon = item.icon;
+								const url = item.url;
+								const target = (url.includes("http")) ? '_blank' : '_self';
+								if (item && title) {
 									return (
 									   	<li
-											key={ item.title }
-											className={ slug }
+											key={ index }
+											className={ icon }
 										>
-									   		<a href={ item.link } target={ item.target } title={ item.title }>
-									   			<div className={ `icon-${slug}` } />
+									   		<a href={ url } target={ target } title={ title }>
+									   			<div className={ `icon-${icon}` } />
 									   		</a>
 									   	</li>
 								   )
