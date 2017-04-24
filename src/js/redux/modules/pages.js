@@ -1,4 +1,6 @@
-import * as api from '../../api-client';
+import * as api from 'apiClient';
+
+// TYPES
 
 const LOAD_PAGES = 'LOAD_PAGES';
 const LOAD_PAGES_SUCCESS = 'LOAD_PAGES_SUCCESS';

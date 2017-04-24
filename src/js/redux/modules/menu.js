@@ -1,4 +1,4 @@
-import * as api from '../../api-client';
+import * as api from 'apiClient';
 
 // TYPES
 
