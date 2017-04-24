@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
 
 /*
   This component displays the word Loading... whenever a page's data is being loaded through reduxAsyncConnect
