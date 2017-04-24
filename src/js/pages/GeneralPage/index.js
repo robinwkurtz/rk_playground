@@ -8,8 +8,11 @@ export default class GeneralPage extends Component {
 		const title = p.title.rendered;
 		const content = { __html: p.content.rendered };
 		return (
-			<div>
-				<div dangerouslySetInnerHTML={content} />
+			<div className="row">
+				<div
+					className="column"
+					dangerouslySetInnerHTML={content}
+				/>
 			</div>
 		);
 	}
