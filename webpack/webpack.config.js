@@ -16,9 +16,9 @@ var configuration = {
 		main: './src/js/app.js'
 	},
 	output: {
-		path: path.resolve(rootDir, 'build/assets'),
+		path: path.resolve(rootDir, 'build/server'),
 		// publicPath: '/assets/',
-		publicPath: 'http://localhost:4200/server/',
+		publicPath: 'http://localhost:4200/build/server/',
 		filename: '[name].[hash].js',
 		chunkFilename: '[name].[hash].js'
 	},
@@ -45,8 +45,8 @@ var configuration = {
 				]
 			},
 			{
-				test: /\.(jpg|gif|png)$/,
-				loaders: ['url?limit=10000']
+				test: /\.(jpg|gif|png|ico)$/,
+				loaders: ['url?limit=10000&name=[name].[ext]']
 			}
 		]
 	},
@@ -57,18 +57,16 @@ var configuration = {
 			menu: rootDir + '/src/js/redux/modules/menu.js',
 			i18n: rootDir + '/src/js/redux/modules/i18n.js',
 			pages: rootDir + '/src/js/redux/modules/pages.js',
+			site: rootDir + '/src/js/redux/modules/site.js',
+			ssr: rootDir + '/src/js/redux/modules/ssr.js',
+			apiClient: rootDir + '/src/js/api-client.js',
 			config: rootDir + '/src/js/config.js',
 			loading: rootDir + '/src/js/components/Loading.js',
 			header: rootDir + '/src/js/components/Header/index.js',
 			navigation: rootDir + '/src/js/components/Navigation.js',
 			social: rootDir + '/src/js/components/Social/index.js',
 			languageSwitcher: rootDir + '/src/js/components/LanguageSwitcher.js',
-			gstyles: rootDir + '/src/stylesheets/index.scss',
-			// grid: rootDir + '/src/stylesheets/helpers/grid.scss',
-			// mixins: rootDir + '/src/stylesheets/helpers/mixins.scss',
-			// reset: rootDir + '/src/stylesheets/helpers/reset.scss',
-			// typography: rootDir + '/src/stylesheets/helpers/typography.scss',
-			// variables: rootDir + '/src/stylesheets/helpers/variables.scss'
+			gstyles: rootDir + '/src/stylesheets/index.scss'
 		},
 		extensions: ['', '.json', '.js', '.jsx', '.css', '.scss']
 	},
