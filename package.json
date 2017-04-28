@@ -3,6 +3,9 @@
     "version": "0.0.1",
     "description": "Frontend for robinwkurtz.com running off WordPress API",
     "main": "app-server.js",
+    "engines": {
+        "node": "4.4.0"
+    },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev:build-server": "webpack --config ./webpack/webpack.config.server.dev.js --watch --colors --display-error-details",
