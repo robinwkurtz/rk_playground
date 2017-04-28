@@ -7,7 +7,7 @@ var rootDir = path.resolve(__dirname, '..');
 
 var regularExpressions = {
 	javascript : /\.jsx?$/,
-	styles: /\.scss$/
+	styles: /\.(scss|css)$/,
 };
 
 var configuration = {
@@ -38,7 +38,7 @@ var configuration = {
 				loader : 'url?prefix=font/&limit=10000'
 			},
 			{
-				test: /\.(scss|css)$/,
+				test: regularExpressions.styles,
 				loaders: [
 					'style',
 					'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]!postcss!sass?sourceMap'
