@@ -98,12 +98,12 @@ export default function server(parameters) {
   });
 
   const server = require('http').createServer(app);
-  server.listen(process.env.PORT || 4200, process.env.IP || '0.0.0.0', function(err) {
-    if (err) {
-      console.log(err.stack);
-    }
-    else {
-      console.log("Server listening on http://%s:%s", server.address().address, server.address().port);
-    }
+  server.listen(process.env.PORT || 4200), function(err) {
+      if (err) {
+        console.log(err.stack);
+      }
+      else {
+        console.log("Server listening on http://%s:%s", server.address().address, server.address().port);
+      }
   });
 }
