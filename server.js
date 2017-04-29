@@ -93,9 +93,11 @@ export default function server(parameters) {
     });
 
     const server = require('http').createServer(app);
+    console.log('server', server);
+    consoel.log('port', process.env.PORT, process.env.PORT || 4200);
     server.listen(process.env.PORT || 4200, function(err) {
         if (err) {
-            console.log(err.stack);
+            console.log('server error', err.stack);
         }
         else {
             console.log("Server listening on http://%s:%s", server.address().address, server.address().port);
