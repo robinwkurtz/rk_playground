@@ -112,7 +112,7 @@ module.exports =
 	  var app = (0, _express2.default)();
 	  app.set('view engine', 'ejs');
 	
-	  if (false) {
+	  if (true) {
 	    app.use('/assets', _express2.default.static('./build/assets'));
 	  }
 	
@@ -168,7 +168,7 @@ module.exports =
 	        }).catch(function (err) {
 	          console.error(err.stack);
 	          res.status(500);
-	          if (true) {
+	          if (false) {
 	            res.send(err.stack);
 	          } else {
 	            res.send('Server Error');
@@ -181,7 +181,7 @@ module.exports =
 	  });
 	
 	  var server = __webpack_require__(/*! http */ 53).createServer(app);
-	  server.listen(({"NODE_ENV":"development","BABEL_ENV":"development/server"}).PORT || 4200, ({"NODE_ENV":"development","BABEL_ENV":"development/server"}).IP || '0.0.0.0', function (err) {
+	  server.listen(({"NODE_ENV":"production","BABEL_ENV":"production/server"}).PORT || 4200, ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).IP || '0.0.0.0', function (err) {
 	    if (err) {
 	      console.log(err.stack);
 	    } else {
@@ -325,7 +325,7 @@ module.exports =
 	    var reduxRouterMiddleware = (0, _reactRouterRedux.routerMiddleware)(history);
 	
 	    var middleware = [_reduxThunk2.default, reduxRouterMiddleware];
-	    if ((true) && __CLIENT__) {
+	    if (false) {
 	        middleware.push(logger);
 	    }
 	    var createStoreWithMiddleware = (0, _redux.compose)(_redux.applyMiddleware.apply(undefined, middleware), (typeof window === 'undefined' ? 'undefined' : _typeof(window)) === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : function (f) {
