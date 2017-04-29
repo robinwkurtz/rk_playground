@@ -98,7 +98,7 @@ export default function server(parameters) {
   });
 
   const server = require('http').createServer(app);
-  server.listen(process.env.PORT || 4200), function(err) {
+  server.listen(process.env.PORT || 5000), function(err) {
       if (err) {
         console.log(err.stack);
       }
