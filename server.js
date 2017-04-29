@@ -105,5 +105,5 @@ export default function server(parameters) {
       else {
         console.log("Server listening on http://%s:%s", server.address().address, server.address().port);
       }
-  });
+  }
 }
