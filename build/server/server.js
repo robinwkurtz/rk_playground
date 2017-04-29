@@ -51,7 +51,7 @@ module.exports =
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -92,21 +92,31 @@ module.exports =
 	
 	var _routes2 = _interopRequireDefault(_routes);
 	
+	var _reactIntl = __webpack_require__(/*! react-intl */ 51);
+	
+	var _fr = __webpack_require__(/*! react-intl/locale-data/fr */ 52);
+	
+	var _fr2 = _interopRequireDefault(_fr);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	// Define some global constants. The client defines the opposite values
 	global.__CLIENT__ = false;
 	global.__SERVER__ = true;
 	
+	// Le Français
+	
+	(0, _reactIntl.addLocaleData)(_fr2.default);
+	
 	function server(parameters) {
-	    var app = (0, _express2.default)();
-	    app.set('view engine', 'ejs');
+	  var app = (0, _express2.default)();
+	  app.set('view engine', 'ejs');
 	
-	    if (true) {
-	        app.use('/assets', _express2.default.static('./build/assets'));
-	    }
+	  if (false) {
+	    app.use('/assets', _express2.default.static('./build/assets'));
+	  }
 	
-	    /*
+	  /*
 	    This will be the most visited route of our application: it responds to all paths.
 	    For each request that comes to our web server, we will create a new store.
 	    Then, using the match function of react-router, we will receive the tree of components
@@ -114,70 +124,70 @@ module.exports =
 	    Regular routes will result in a call to the loadOnServer function from redux-connect. This
 	    call will return a Promise that is resolved when all the Promises specified in all the
 	    wrapped components are resolved. For an example of this, see how the <Home> component loads its data.
-	    */
-	    app.get('/*', function (req, res) {
-	        var memHistory = (0, _createMemoryHistory2.default)(req.originalUrl);
-	        var store = (0, _store2.default)(memHistory);
-	        var history = (0, _reactRouterRedux.syncHistoryWithStore)(memHistory, store);
-	        var routes = (0, _routes2.default)(store);
+	  */
+	  app.get('/*', function (req, res) {
+	    var memHistory = (0, _createMemoryHistory2.default)(req.originalUrl);
+	    var store = (0, _store2.default)(memHistory);
+	    var history = (0, _reactRouterRedux.syncHistoryWithStore)(memHistory, store);
+	    var routes = (0, _routes2.default)(store);
 	
-	        (0, _reactRouter.match)({ history: history, routes: routes, location: req.originalUrl }, function (err, redirectLocation, renderProps) {
-	            if (redirectLocation) {
-	                res.redirect(redirectLocation.pathname + redirectLocation.search);
-	            } else if (err) {
-	                console.error('ROUTER ERROR:', error);
-	                res.status(500);
-	            } else if (renderProps) {
-	                (0, _reduxConnect.loadOnServer)(_extends({}, renderProps, { store: store })).then(function () {
-	                    // Check if there's a 404 after loading data on server
-	                    if (store.getState().ssr.error404) {
-	                        res.status(404);
-	                    }
+	    (0, _reactRouter.match)({ history: history, routes: routes, location: req.originalUrl }, function (err, redirectLocation, renderProps) {
+	      if (redirectLocation) {
+	        res.redirect(redirectLocation.pathname + redirectLocation.search);
+	      } else if (err) {
+	        console.error('ROUTER ERROR:', error);
+	        res.status(500);
+	      } else if (renderProps) {
+	        (0, _reduxConnect.loadOnServer)(_extends({}, renderProps, { store: store })).then(function () {
+	          // Check if there's a 404 after loading data on server
+	          if (store.getState().ssr.error404) {
+	            res.status(404);
+	          }
 	
-	                    var html;
-	                    try {
-	                        html = (0, _server.renderToString)(_react2.default.createElement(
-	                            _reactRedux.Provider,
-	                            { store: store, key: 'provider' },
-	                            _react2.default.createElement(_reduxConnect.ReduxAsyncConnect, renderProps)
-	                        ));
-	                    } catch (e) {
-	                        html = '';
-	                    }
+	          var html;
+	          try {
+	            html = (0, _server.renderToString)(_react2.default.createElement(
+	              _reactRedux.Provider,
+	              { store: store, key: 'provider' },
+	              _react2.default.createElement(_reduxConnect.ReduxAsyncConnect, renderProps)
+	            ));
+	          } catch (e) {
+	            html = '';
+	          }
 	
-	                    var head = _reactHelmet2.default.rewind();
-	                    var title = head.title.toString();
-	                    var meta = head.meta.toString();
-	                    var link = head.link.toString();
+	          var head = _reactHelmet2.default.rewind();
+	          var title = head.title.toString();
+	          var meta = head.meta.toString();
+	          var link = head.link.toString();
 	
-	                    var chunks = parameters.chunks();
-	                    var appJs = chunks && chunks.javascript && chunks.javascript.main;
-	                    var appCss = chunks && chunks.styles && chunks.styles.main;
+	          var chunks = parameters.chunks();
+	          var appJs = chunks && chunks.javascript && chunks.javascript.main;
+	          var appCss = chunks && chunks.styles && chunks.styles.main;
 	
-	                    res.render('index', { html: html, title: title, meta: meta, link: link, store: store, appCss: appCss, appJs: appJs });
-	                }).catch(function (err) {
-	                    console.error(err.stack);
-	                    res.status(500);
-	                    if (false) {
-	                        res.send(err.stack);
-	                    } else {
-	                        res.send('Server Error');
-	                    }
-	                });
-	            } else {
-	                res.status(404).send('Not Found');
-	            }
+	          res.render('index', { html: html, title: title, meta: meta, link: link, store: store, appCss: appCss, appJs: appJs });
+	        }).catch(function (err) {
+	          console.error(err.stack);
+	          res.status(500);
+	          if (true) {
+	            res.send(err.stack);
+	          } else {
+	            res.send('Server Error');
+	          }
 	        });
+	      } else {
+	        res.status(404).send('Not Found');
+	      }
 	    });
+	  });
 	
-	    var server = __webpack_require__(/*! http */ 51).createServer(app);
-	    server.listen(({"NODE_ENV":"production","BABEL_ENV":"production/server"}).PORT, function (err) {
-	        if (err) {
-	            console.log(err.stack);
-	        } else {
-	            console.log("Server listening on http://%s:%s", server.address().address, server.address().port);
-	        }
-	    });
+	  var server = __webpack_require__(/*! http */ 53).createServer(app);
+	  server.listen(({"NODE_ENV":"development","BABEL_ENV":"development/server"}).PORT || 4200, ({"NODE_ENV":"development","BABEL_ENV":"development/server"}).IP || '0.0.0.0', function (err) {
+	    if (err) {
+	      console.log(err.stack);
+	    } else {
+	      console.log("Server listening on http://%s:%s", server.address().address, server.address().port);
+	    }
+	  });
 	}
 
 /***/ },
@@ -315,7 +325,7 @@ module.exports =
 	    var reduxRouterMiddleware = (0, _reactRouterRedux.routerMiddleware)(history);
 	
 	    var middleware = [_reduxThunk2.default, reduxRouterMiddleware];
-	    if (false) {
+	    if ((true) && __CLIENT__) {
 	        middleware.push(logger);
 	    }
 	    var createStoreWithMiddleware = (0, _redux.compose)(_redux.applyMiddleware.apply(undefined, middleware), (typeof window === 'undefined' ? 'undefined' : _typeof(window)) === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : function (f) {
@@ -2791,6 +2801,24 @@ module.exports =
 
 /***/ },
 /* 51 */
+/*!*****************************!*\
+  !*** external "react-intl" ***!
+  \*****************************/
+/***/ function(module, exports) {
+
+	module.exports = require("react-intl");
+
+/***/ },
+/* 52 */
+/*!********************************************!*\
+  !*** external "react-intl/locale-data/fr" ***!
+  \********************************************/
+/***/ function(module, exports) {
+
+	module.exports = require("react-intl/locale-data/fr");
+
+/***/ },
+/* 53 */
 /*!***********************!*\
   !*** external "http" ***!
   \***********************/
