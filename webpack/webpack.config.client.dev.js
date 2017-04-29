@@ -12,8 +12,8 @@ configuration.plugins = configuration.plugins.concat(
 			NODE_ENV: JSON.stringify('development'),
 			BABEL_ENV: JSON.stringify('development/client')
 		},
-    __PROD__: false,
-    __DEV__: true
+		__PROD__: false,
+		__DEV__: true
 	}),
 	new webpack.HotModuleReplacementPlugin()
 );
@@ -24,9 +24,9 @@ configuration.entry.main = [
 ];
 
 var javascriptLoader = configuration.module.loaders.filter(
-  function(loader) {
-	  return loader.test.toString() === configuration.regularExpressions.javascript.toString();
-  }
+	function(loader) {
+		return loader.test.toString() === configuration.regularExpressions.javascript.toString();
+	}
 )[0];
 javascriptLoader.loaders.unshift('react-hot');
 

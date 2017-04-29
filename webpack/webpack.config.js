@@ -16,9 +16,8 @@ var configuration = {
 		main: './src/js/app.js'
 	},
 	output: {
-		path: path.resolve(rootDir, 'build/server'),
-		// publicPath: '/assets/',
-		publicPath: 'http://localhost:4200/build/server/',
+		path: path.resolve(rootDir, 'build/assets'),
+		publicPath: '/assets/',
 		filename: '[name].[hash].js',
 		chunkFilename: '[name].[hash].js'
 	},
