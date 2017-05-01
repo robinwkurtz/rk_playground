@@ -8,14 +8,14 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm-run-all --print-label --parallel prod:*",
     "dev:build-server": "webpack --config ./webpack/webpack.config.server.dev.js --watch --colors --display-error-details",
     "dev:build-client": "node ./dev-server.js",
     "dev:run-server": "nodemon ./start-server.js --watch './build/server'",
     "dev": "npm-run-all --print-label --parallel dev:*",
     "prod:build-server": "webpack --config ./webpack/webpack.config.server.prod.js ",
     "prod:build-client": "webpack --config ./webpack/webpack.config.client.prod.js ",
-    "prod:run-server": "pm2 start --no-daemon ./start-prod-server.js"
+    "prod:run-server": "pm2 start --no-daemon ./start-prod-server.js",
+    "start": "npm-run-all --print-label --parallel prod:*"
   },
   "repository": {
     "type": "git",
