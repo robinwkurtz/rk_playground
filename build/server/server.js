@@ -181,13 +181,15 @@ module.exports =
 	  });
 	
 	  var server = __webpack_require__(/*! http */ 53).createServer(app);
-	  server.listen(({"NODE_ENV":"production","BABEL_ENV":"production/server"}).PORT || 5000), function (err) {
+	  var PORT = ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).PORT || 8000;
+	
+	  server.listen(PORT, ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).IP || '0.0.0.0', function (err) {
 	    if (err) {
 	      console.log(err.stack);
 	    } else {
 	      console.log("Server listening on http://%s:%s", server.address().address, server.address().port);
 	    }
-	  };
+	  });
 	}
 
 /***/ },
