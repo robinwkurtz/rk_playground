@@ -2,7 +2,7 @@
   "name": "robinwkurtz_playground",
   "version": "0.0.1",
   "description": "Frontend for robinwkurtz.com running off WordPress API",
-  "main": "app-server.js",
+  "main": "start-server.js",
   "engines": {
     "node": "4.4.0"
   },
@@ -16,7 +16,7 @@
     "prod:build-server": "webpack --config ./webpack/webpack.config.server.prod.js ",
     "prod:build-client": "webpack --config ./webpack/webpack.config.client.prod.js ",
     "prod:run-server": "pm2 start --no-daemon ./start-prod-server.js",
-    "prod": "npm run prod:run-server"
+    "prod": "node start-server.js"
   },
   "repository": {
     "type": "git",
