@@ -181,7 +181,7 @@ module.exports =
 	  });
 	
 	  var server = __webpack_require__(/*! http */ 53).createServer(app);
-	  var PORT = ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).PORT || 8000;
+	  var PORT = ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).PORT || 5000;
 	
 	  server.listen(PORT, ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).IP || '0.0.0.0', function (err) {
 	    if (err) {
