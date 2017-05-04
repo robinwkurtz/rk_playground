@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run prod",
+    "start": "node start-server.js",
     "dev:build-server": "webpack --config ./webpack/webpack.config.server.dev.js --watch --colors --display-error-details",
     "dev:build-client": "node ./dev-server.js",
     "dev:run-server": "nodemon ./start-server.js --watch './build/server'",
