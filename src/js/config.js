@@ -1,7 +1,8 @@
 // App configuration for both server and client side. For now it mostly defines the <head> values
 
 module.exports = {
-	API_URL: 'http://robin.local/personal/robinwkurtz_playground_wp/wp-json/',
+	// API_URL: 'http://robin.local/personal/robinwkurtz_playground_wp/wp-json/',
+	API_URL: 'http://playground.robinwkurtz.com/wp-json/',
 	app: {
 		logo: {
 			full: 'Robin Kurtz',
