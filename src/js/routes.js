@@ -4,9 +4,11 @@ import { Route, IndexRoute, Redirect } from 'react-router';
 import App from './pages/App/';
 import HomePage from './pages/HomePage/';
 import AboutPage from './pages/AboutPage/';
-import CVPage from './pages/CVPage/'; 
+import CVPage from './pages/CVPage/';
 import GeneralPage from './pages/GeneralPage/';
 import LostPage from './pages/LostPage/';
+
+import { Bike } from './pages/playzone/Bike';
 
 import { closeMenu } from 'menu';
 
@@ -29,6 +31,7 @@ export default function createRoutes(store) {
             <Route path="what-i-do" component={GeneralPage} />
             <Route path="curriculum-vitae" component={CVPage} />
             <Route path="say-hello" component={GeneralPage} />
+            <Route path="playzone/bike" type="playzone" component={Bike} />
             <Route path="*" component={LostPage} />
         </Route>
     );

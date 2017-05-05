@@ -1,0 +1,19 @@
+$color-gray-blue: #D1D2D4;
+$color-yellow: #FED652;
+$color-blue: #009FE0;
+$color-pink: #EF5B75;
+
+@mixin border-radius($radius: 0) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius:    $radius;
+	border-radius:         $radius;
+}
+
+@mixin rotate($amount) {
+	//implied defaults
+	-webkit-transform: rotate($amount);
+	-moz-transform:    rotate($amount);
+	-ms-transform:     rotate($amount);
+	-o-transform:      rotate($amount);
+	transform:         rotate($amount);
+}
