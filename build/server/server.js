@@ -92,9 +92,9 @@ module.exports =
 	
 	var _routes2 = _interopRequireDefault(_routes);
 	
-	var _reactIntl = __webpack_require__(/*! react-intl */ 58);
+	var _reactIntl = __webpack_require__(/*! react-intl */ 61);
 	
-	var _fr = __webpack_require__(/*! react-intl/locale-data/fr */ 59);
+	var _fr = __webpack_require__(/*! react-intl/locale-data/fr */ 62);
 	
 	var _fr2 = _interopRequireDefault(_fr);
 	
@@ -180,7 +180,7 @@ module.exports =
 	        });
 	    });
 	
-	    var server = __webpack_require__(/*! http */ 60).createServer(app);
+	    var server = __webpack_require__(/*! http */ 63).createServer(app);
 	    var PORT = ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).PORT || 3000;
 	    var IP = ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).IP || '0.0.0.0';
 	
@@ -967,6 +967,8 @@ module.exports =
 	
 	var _LostPage2 = _interopRequireDefault(_LostPage);
 	
+	var _Bike = __webpack_require__(/*! ./pages/playzone/Bike */ 58);
+	
 	var _menu = __webpack_require__(/*! menu */ 22);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -993,6 +995,7 @@ module.exports =
 	        _react2.default.createElement(_reactRouter.Route, { path: 'what-i-do', component: _GeneralPage2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: 'curriculum-vitae', component: _CVPage2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: 'say-hello', component: _GeneralPage2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: 'playzone/bike', type: 'playzone', component: _Bike.Bike }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '*', component: _LostPage2.default })
 	    );
 	}
@@ -1081,8 +1084,10 @@ module.exports =
 				var _props = this.props,
 				    children = _props.children,
 				    menu = _props.menu,
-				    page = _props.page;
+				    page = _props.page,
+				    location = _props.location;
 	
+				var hasPage = Object.keys(page).length;
 				return _react2.default.createElement(
 					'main',
 					{ className: _index2.default.html },
@@ -1104,11 +1109,11 @@ module.exports =
 								_react2.default.createElement('meta', { property: 'og:type', content: 'page' }),
 								_react2.default.createElement('link', { rel: 'icon', type: 'image/x-icon', href: _favicon2.default })
 							),
-							_react2.default.createElement(_header2.default, this.props),
+							hasPage ? _react2.default.createElement(_header2.default, this.props) : null,
 							_react2.default.createElement(
 								'div',
 								{ className: (0, _classnames2.default)(_index2.default.main, 'content') },
-								_react2.default.cloneElement(children, { page: page })
+								hasPage ? _react2.default.cloneElement(children, { page: page }) : children
 							)
 						)
 					)
@@ -3281,6 +3286,319 @@ module.exports =
 
 /***/ }),
 /* 58 */
+/*!*********************************************!*\
+  !*** ./src/js/pages/playzone/Bike/index.js ***!
+  \*********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.Bike = undefined;
+	
+	var _react = __webpack_require__(/*! react */ 2);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _index = __webpack_require__(/*! ./index.scss */ 59);
+	
+	var _index2 = _interopRequireDefault(_index);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Intro = _react2.default.createClass({
+	    displayName: 'Intro',
+	
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'wrapper' },
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'row padding-top padding-bottom double-space' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'column align-center' },
+	                    _react2.default.createElement(
+	                        'h1',
+	                        null,
+	                        'Welcome to my react playground... What will I come up with!'
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+	
+	var Seat = _react2.default.createClass({
+	    displayName: 'Seat',
+	
+	    render: function render() {
+	        var styles = {
+	            top: this.props.top,
+	            right: this.props.right,
+	            bottom: this.props.bottom,
+	            left: this.props.left
+	        };
+	        var classes = this.props.classes;
+	        return _react2.default.createElement(
+	            'div',
+	            { className: "part part--absolute " + classes, style: styles },
+	            _react2.default.createElement('div', { className: 'seat part part--absolute' }),
+	            _react2.default.createElement('div', { className: 'seat-bottom part part--absolute' })
+	        );
+	    }
+	});
+	
+	var Handlebar = _react2.default.createClass({
+	    displayName: 'Handlebar',
+	
+	    render: function render() {
+	        var styles = {
+	            top: this.props.top,
+	            right: this.props.right,
+	            bottom: this.props.bottom,
+	            left: this.props.left
+	        };
+	        var classes = this.props.classes;
+	        return _react2.default.createElement(
+	            'div',
+	            { className: "part part--absolute " + classes, style: styles },
+	            _react2.default.createElement('div', { className: 'handlebar part part--absolute' }),
+	            _react2.default.createElement('div', { className: 'handlebar handlebar--end part part--absolute' })
+	        );
+	    }
+	});
+	
+	var Stem = _react2.default.createClass({
+	    displayName: 'Stem',
+	
+	    render: function render() {
+	        var styles = {
+	            top: this.props.top,
+	            right: this.props.right,
+	            bottom: this.props.bottom,
+	            left: this.props.left
+	        };
+	        var classes = this.props.classes;
+	        return _react2.default.createElement('div', { className: "stem part part--absolute " + classes, style: styles });
+	    }
+	});
+	
+	var TubeTop = _react2.default.createClass({
+	    displayName: 'TubeTop',
+	
+	    render: function render() {
+	        var styles = {
+	            top: this.props.top,
+	            right: this.props.right,
+	            bottom: this.props.bottom,
+	            left: this.props.left
+	        };
+	        var classes = this.props.classes;
+	        return _react2.default.createElement('div', { className: "tube-top part part--absolute " + classes, style: styles });
+	    }
+	});
+	
+	var TubeSeat = _react2.default.createClass({
+	    displayName: 'TubeSeat',
+	
+	    render: function render() {
+	        var styles = {
+	            top: this.props.top,
+	            right: this.props.right,
+	            bottom: this.props.bottom,
+	            left: this.props.left
+	        };
+	        var classes = this.props.classes;
+	        return _react2.default.createElement('div', { className: "tube-seat part part--absolute " + classes, style: styles });
+	    }
+	});
+	
+	var TubeDown = _react2.default.createClass({
+	    displayName: 'TubeDown',
+	
+	    render: function render() {
+	        var styles = {
+	            top: this.props.top,
+	            right: this.props.right,
+	            bottom: this.props.bottom,
+	            left: this.props.left
+	        };
+	        var classes = this.props.classes;
+	        return _react2.default.createElement('div', { className: "tube-down part part--absolute " + classes, style: styles });
+	    }
+	});
+	
+	var StaysSeat = _react2.default.createClass({
+	    displayName: 'StaysSeat',
+	
+	    render: function render() {
+	        var styles = {
+	            top: this.props.top,
+	            right: this.props.right,
+	            bottom: this.props.bottom,
+	            left: this.props.left
+	        };
+	        var classes = this.props.classes;
+	        return _react2.default.createElement('div', { className: "stays-seat part part--absolute " + classes, style: styles });
+	    }
+	});
+	
+	var Wheel = _react2.default.createClass({
+	    displayName: 'Wheel',
+	
+	    render: function render() {
+	        var styles = {
+	            top: this.props.top,
+	            right: this.props.right,
+	            bottom: this.props.bottom,
+	            left: this.props.left
+	        };
+	        var classes = this.props.classes;
+	        return _react2.default.createElement('div', { className: "wheel part part--absolute " + classes, style: styles });
+	    }
+	});
+	
+	var Sprocket = _react2.default.createClass({
+	    displayName: 'Sprocket',
+	
+	    render: function render() {
+	        var styles = {
+	            top: this.props.top,
+	            right: this.props.right,
+	            bottom: this.props.bottom,
+	            left: this.props.left
+	        };
+	        var classes = this.props.classes;
+	        return _react2.default.createElement('div', { className: "sprocket part part--absolute " + classes, style: styles });
+	    }
+	});
+	
+	var Chain = _react2.default.createClass({
+	    displayName: 'Chain',
+	
+	    render: function render() {
+	        var styles = {
+	            top: this.props.top,
+	            right: this.props.right,
+	            bottom: this.props.bottom,
+	            left: this.props.left,
+	            width: this.props.width
+	        };
+	        var classes = this.props.classes;
+	        return _react2.default.createElement('div', { className: "chain part part--absolute " + classes, style: styles });
+	    }
+	});
+	
+	var Ground = _react2.default.createClass({
+	    displayName: 'Ground',
+	
+	    render: function render() {
+	        var styles = {
+	            top: this.props.top,
+	            right: this.props.right,
+	            bottom: this.props.bottom,
+	            left: this.props.left,
+	            width: this.props.width
+	        };
+	        var classes = this.props.classes;
+	        return _react2.default.createElement('div', { className: "ground part part--absolute " + classes, style: styles });
+	    }
+	});
+	
+	var Backround = _react2.default.createClass({
+	    displayName: 'Backround',
+	
+	    render: function render() {
+	        var classes = this.props.classes;
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'background part part--absolute css-scroll' },
+	            _react2.default.createElement('div', { className: 'element element--x element--1' }),
+	            _react2.default.createElement('div', { className: 'element element--x element--2 border-pink' }),
+	            _react2.default.createElement('div', { className: 'element element--x element--3 border-blue' }),
+	            _react2.default.createElement('div', { className: 'element element--line element--4' }),
+	            _react2.default.createElement('div', { className: 'element element--line element--5' }),
+	            _react2.default.createElement('div', { className: 'element element--line element--6' })
+	        );
+	    }
+	});
+	
+	var Bike = exports.Bike = _react2.default.createClass({
+	    displayName: 'Bike',
+	
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'wrapper' },
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'row small-padding-top small-padding-bottom double-space' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'column align-center' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'bike part part--container' },
+	                        _react2.default.createElement(TubeTop, { top: '71px', right: '268px' }),
+	                        _react2.default.createElement(Seat, { top: '24px', left: '260px' }),
+	                        _react2.default.createElement(TubeSeat, { top: '159px', right: '292px' }),
+	                        _react2.default.createElement(TubeDown, { top: '187px', right: '222px' }),
+	                        _react2.default.createElement(StaysSeat, { top: '160px', right: '406px' }),
+	                        _react2.default.createElement(Handlebar, { top: '20px', right: '296px' }),
+	                        _react2.default.createElement(Stem, { top: '135px', right: '106px' }),
+	                        _react2.default.createElement(Wheel, { bottom: '0', left: '108px', classes: 'wheel--back wheel--inner-quarter css-rotate' }),
+	                        _react2.default.createElement(Ground, { bottom: '4px', left: '120px', classes: 'ground--back' }),
+	                        _react2.default.createElement(Chain, { left: '248px', bottom: '127px', classes: 'chain--top' }),
+	                        _react2.default.createElement(Sprocket, { left: '348px', bottom: '56px' }),
+	                        _react2.default.createElement(Chain, { left: '233px', bottom: '76px', width: '128px', rotate: '16deg', classes: 'chain--bottom' }),
+	                        _react2.default.createElement(Wheel, { bottom: '0', right: '72px', classes: 'wheel--front wheel--inner-half css-rotate' }),
+	                        _react2.default.createElement(Ground, { bottom: '4px', right: '130px', classes: 'ground--front' }),
+	                        _react2.default.createElement(Backround, null)
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+
+/***/ }),
+/* 59 */
+/*!***********************************************!*\
+  !*** ./src/js/pages/playzone/Bike/index.scss ***!
+  \***********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	// fake-style-loader: Loads css
+	
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]!postcss!sass?sourceMap!./index.scss */ 60);
+	if (typeof content === "string") content = [[module.id, content, ""]];
+	
+	module.exports = content.locals || {}
+	module.exports.source = content
+
+/***/ }),
+/* 60 */
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./~/css-loader?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]!./~/postcss-loader!./~/sass-loader?sourceMap!./src/js/pages/playzone/Bike/index.scss ***!
+  \****************************************************************************************************************************************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ../../../../../~/css-loader/lib/css-base.js */ 28)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".bike {\n  position: relative;\n  width: 768px;\n  height: 370px;\n  margin: 0 auto;\n  overflow-x: hidden; }\n  .bike .part--container {\n    position: relative; }\n  .bike .part--absolute {\n    position: absolute; }\n    .bike .part--absolute--top {\n      top: 0; }\n    .bike .part--absolute--right {\n      right: 0; }\n    .bike .part--absolute--bottom {\n      bottom: 0; }\n    .bike .part--absolute--left {\n      left: 0; }\n\n.seat:before, .seat:after {\n  content: '';\n  position: absolute;\n  background-color: #EF5B75; }\n\n.seat:before {\n  width: 40px;\n  height: 20px;\n  border-radius: 10px; }\n\n.seat:after {\n  left: 26px;\n  width: 54px;\n  height: 16px;\n  border-radius: 8px; }\n\n.seat-bottom {\n  top: 14px;\n  left: 23px;\n  width: 40px;\n  height: 20px;\n  background-color: #D1D2D4;\n  border-radius: 10px;\n  -webkit-transform: rotate(70deg);\n  transform: rotate(70deg); }\n\n.handlebar {\n  width: 80px;\n  height: 10px;\n  box-shadow: 0 10px 0 0 #009FE0;\n  border-radius: 10px; }\n  .handlebar.end {\n    top: 10px;\n    right: -105px;\n    width: 60px;\n    height: 60px;\n    border: 10px solid #D1D2D4;\n    border-left-color: transparent;\n    border-top-color: transparent;\n    box-shadow: none;\n    border-radius: 50%;\n    -webkit-transform: rotate(-45deg);\n    transform: rotate(-45deg); }\n    .handlebar.end:before, .handlebar.end:after {\n      content: '';\n      position: absolute;\n      width: 10px;\n      height: 10px;\n      background-color: #D1D2D4;\n      border-radius: 50%; }\n    .handlebar.end:before {\n      top: -3px;\n      right: -2px; }\n    .handlebar.end:after {\n      top: 32px;\n      left: -3px; }\n\n.tube-top {\n  width: 186px;\n  height: 10px;\n  box-shadow: 0 10px 0 0 #009FE0;\n  border-radius: 10px; }\n\n.tube-seat {\n  width: 240px;\n  height: 10px;\n  box-shadow: 0 10px 0 0 #009FE0;\n  border-radius: 10px;\n  -webkit-transform: rotate(70deg);\n  transform: rotate(70deg); }\n\n.tube-down {\n  width: 210px;\n  height: 10px;\n  box-shadow: 0 10px 0 0 #009FE0;\n  border-radius: 10px;\n  -webkit-transform: rotate(-51deg);\n  transform: rotate(-51deg); }\n\n.stays-seat {\n  width: 198px;\n  height: 10px;\n  box-shadow: 0 10px 0 0 #009FE0;\n  border-radius: 10px;\n  -webkit-transform: rotate(-61deg);\n  transform: rotate(-61deg); }\n\n.stem {\n  width: 250px;\n  height: 10px;\n  box-shadow: 0 10px 0 0 #009FE0;\n  border-radius: 10px;\n  -webkit-transform: rotate(65deg);\n  transform: rotate(65deg); }\n\n.wheel {\n  width: 236px;\n  height: 236px;\n  border: 10px solid #FED652;\n  border-radius: 50%; }\n  .wheel--front {\n    border-color: #EF5B75; }\n  .wheel:before, .wheel:after {\n    content: '';\n    position: absolute;\n    border-radius: 50%; }\n  .wheel:before {\n    top: 50%;\n    right: 50%;\n    bottom: 50%;\n    left: 50%;\n    width: 34px;\n    height: 34px;\n    margin-top: -17px;\n    margin-left: -17px;\n    background-color: #EF5B75; }\n  .wheel:after {\n    top: 50%;\n    right: 50%;\n    bottom: 50%;\n    left: 50%;\n    width: 90%;\n    height: 90%;\n    margin-top: -45%;\n    margin-left: -45%;\n    border: 7px solid #EF5B75; }\n  .wheel--inner-half:after {\n    border-color: #FED652;\n    border-left-color: transparent;\n    border-top-color: transparent;\n    -webkit-transform: rotate(-45deg);\n    transform: rotate(-45deg); }\n  .wheel--inner-quarter:after {\n    border-color: #009FE0;\n    border-left-color: transparent;\n    border-top-color: transparent;\n    border-right-color: transparent;\n    -webkit-transform: rotate(-180deg);\n    transform: rotate(-180deg); }\n\n.sprocket {\n  width: 75px;\n  height: 75px;\n  border: 9px solid #EF5B75;\n  border-radius: 50%; }\n  .sprocket:before, .sprocket:after {\n    content: '';\n    position: absolute;\n    border-radius: 50%; }\n  .sprocket:before {\n    top: 50%;\n    right: 50%;\n    bottom: 50%;\n    left: 50%;\n    width: 22px;\n    height: 22px;\n    margin-top: -11px;\n    margin-left: -11px;\n    background-color: #FED652; }\n\n.chain {\n  width: 100px;\n  height: 0px;\n  border-top: 4px dashed #EF5B75; }\n  .chain--top {\n    width: 111px;\n    -webkit-transform: rotate(2deg);\n    transform: rotate(2deg); }\n  .chain--bottom {\n    -webkit-transform: rotate(17deg);\n    transform: rotate(17deg); }\n\n.ground {\n  height: 4px;\n  border-radius: 10px; }\n  .ground--front {\n    width: 185px;\n    box-shadow: 0 4px 0 0 #EF5B75; }\n  .ground--back {\n    width: 100px;\n    box-shadow: 0 4px 0 0 #FED652; }\n\n.background {\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0; }\n  .background .element {\n    position: absolute;\n    border-radius: 10px; }\n    .background .element--line {\n      width: 100px;\n      height: 4px;\n      box-shadow: 0 4px 0 0; }\n    .background .element--x:before, .background .element--x:after {\n      content: '';\n      position: absolute;\n      width: 16px;\n      height: 4px;\n      box-shadow: 0 4px 0 0;\n      border-radius: 10px; }\n    .background .element--x:before {\n      left: -3px;\n      -webkit-transform: rotate(-45deg);\n      transform: rotate(-45deg); }\n    .background .element--x:after {\n      left: 3px;\n      -webkit-transform: rotate(45deg);\n      transform: rotate(45deg); }\n    .background .element--1 {\n      top: 3%;\n      right: 45%;\n      color: #FED652; }\n    .background .element--2 {\n      top: 40%;\n      left: 15%;\n      color: #EF5B75; }\n    .background .element--3 {\n      top: 90%;\n      right: 45%;\n      color: #009FE0; }\n    .background .element--4 {\n      top: 30%;\n      left: 14%;\n      color: #EF5B75; }\n    .background .element--5 {\n      top: 40%;\n      left: 40%;\n      color: #FED652; }\n    .background .element--6 {\n      top: 50%;\n      left: 10%;\n      color: #FED652; }\n\n.css-rotate {\n  -webkit-animation-name: rotate;\n          animation-name: rotate;\n  -webkit-animation-duration: 3s;\n          animation-duration: 3s;\n  -webkit-animation-iteration-count: infinite;\n          animation-iteration-count: infinite;\n  -webkit-animation-timing-function: linear;\n          animation-timing-function: linear; }\n\n.css-scroll {\n  -webkit-animation-name: scroll;\n          animation-name: scroll;\n  -webkit-animation-duration: 10s;\n          animation-duration: 10s;\n  -webkit-animation-iteration-count: infinite;\n          animation-iteration-count: infinite;\n  -webkit-animation-timing-function: linear;\n          animation-timing-function: linear; }\n\n@-webkit-keyframes rotate {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes rotate {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@-webkit-keyframes scroll {\n  from {\n    left: 200%;\n    width: 200%; }\n  to {\n    left: -200%;\n    width: 0%; } }\n\n@keyframes scroll {\n  from {\n    left: 200%;\n    width: 200%; }\n  to {\n    left: -200%;\n    width: 0%; } }\n", "", {"version":3,"sources":["/./src/js/pages/src/js/pages/playzone/Bike/index.scss","/./src/js/pages/src/js/pages/playzone/Bike/helpers.scss"],"names":[],"mappings":"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","file":"index.scss","sourcesContent":["@import './helpers';\n\n// Bike\n\n:global {\n\n    .bike {\n        position: relative;\n\n        width: 768px;\n        height: 370px;\n\n        margin: 0 auto;\n\n        overflow-x: hidden;\n\n        .part {\n\n            // mix-blend-mode: multiply;\n            // background-blend-mode: multiply;\n\n            // opacity: .5;\n\n            &--container {\n                position: relative;\n            }\n            &--absolute {\n                position: absolute;\n                &--top {\n                    top: 0;\n                }\n                &--right {\n                    right: 0;\n                }\n                &--bottom {\n                    bottom: 0;\n                }\n                &--left {\n                    left: 0;\n                }\n            }\n        }\n    }\n\n    .seat {\n        &:before, &:after {\n            content: '';\n            position: absolute;\n\n            background-color: $color-pink;\n        }\n\n        &:before {\n            width: 40px;\n            height: 20px;\n\n            @include border-radius(10px);\n        }\n\n        &:after {\n            left: 26px;\n\n            width: 54px;\n            height: 16px;\n\n            @include border-radius(8px);\n        }\n    }\n\n    .seat-bottom {\n        top: 14px;\n        left: 23px;\n\n        width: 40px;\n        height: 20px;\n\n        background-color: $color-gray-blue;\n\n        @include border-radius(10px);\n        @include rotate(70deg);\n    }\n\n    .handlebar {\n        width: 80px;\n        height: 10px;\n\n        // background-color: $color-blue;\n\n        box-shadow: 0 10px 0 0 $color-blue;\n        @include border-radius(10px);\n\n        &.end {\n            top: 10px;\n            right: -105px;\n\n            width: 60px;\n            height: 60px;\n\n            border: 10px solid $color-gray-blue;\n            border-left-color: transparent;\n            border-top-color: transparent;\n\n            box-shadow: none;\n\n            @include border-radius(50%);\n\n            @include rotate(-45deg);\n\n            &:before, &:after {\n                content: '';\n                position: absolute;\n\n                width: 10px;\n                height: 10px;\n\n                background-color: $color-gray-blue;\n\n                @include border-radius(50%);\n            }\n\n            &:before {\n                top: -3px;\n                right: -2px;\n            }\n\n            &:after {\n                top: 32px;\n                left: -3px;\n            }\n        }\n    }\n\n    .tube-top {\n        width: 186px;\n        height: 10px;\n\n        //background-color: $color-blue;\n\n        box-shadow: 0 10px 0 0 $color-blue;\n        @include border-radius(10px);\n    }\n\n    .tube-seat {\n        width: 240px;\n        height: 10px;\n\n        // background-color: $color-blue;\n\n        box-shadow: 0 10px 0 0 $color-blue;\n        @include border-radius(10px);\n\n        @include rotate(70deg);\n    }\n\n    .tube-down {\n        width: 210px;\n        height: 10px;\n\n        // background-color: $color-blue;\n\n        box-shadow: 0 10px 0 0 $color-blue;\n        @include border-radius(10px);\n\n        @include rotate(-51deg);\n    }\n\n    .stays-seat {\n        width: 198px;\n        height: 10px;\n\n        // background-color: $color-blue;\n\n        box-shadow: 0 10px 0 0 $color-blue;\n        @include border-radius(10px);\n\n        @include rotate(-61deg);\n    }\n\n    .stem {\n        width: 250px;\n        height: 10px;\n\n        // background-color: $color-blue;\n\n        box-shadow: 0 10px 0 0 $color-blue;\n        @include border-radius(10px);\n\n        @include rotate(65deg);\n    }\n\n    .wheel {\n        width: 236px;\n        height: 236px;\n\n        border: 10px solid $color-yellow;\n        @include border-radius(50%);\n\n        &--front {\n            border-color: $color-pink;\n        }\n\n        &:before, &:after {\n            content: '';\n            position: absolute;\n\n            @include border-radius(50%);\n        }\n\n        &:before {\n            top: 50%;\n            right: 50%;\n            bottom: 50%;\n            left: 50%;\n\n            width: 34px;\n            height: 34px;\n\n            margin-top: -17px;\n            margin-left: -17px;\n\n            background-color: $color-pink;\n        }\n\n        &:after {\n            top: 50%;\n            right: 50%;\n            bottom: 50%;\n            left: 50%;\n\n            width: 90%;\n            height: 90%;\n\n            margin-top: -45%;\n            margin-left: -45%;\n\n            border: 7px solid $color-pink;\n        }\n\n        &--inner-half {\n            &:after {\n                border-color: $color-yellow;\n                border-left-color: transparent;\n                border-top-color: transparent;\n\n                @include rotate(-45deg);\n            }\n        }\n\n        &--inner-quarter {\n            &:after {\n                border-color: $color-blue;\n                border-left-color: transparent;\n                border-top-color: transparent;\n                border-right-color: transparent;\n\n                @include rotate(-180deg);\n            }\n        }\n\n    }\n\n    .sprocket {\n        width: 75px;\n        height: 75px;\n\n        border: 9px solid $color-pink;\n        @include border-radius(50%);\n\n        &:before, &:after {\n            content: '';\n            position: absolute;\n\n            @include border-radius(50%);\n        }\n\n        &:before {\n            top: 50%;\n            right: 50%;\n            bottom: 50%;\n            left: 50%;\n\n            width: 22px;\n            height: 22px;\n\n            margin-top: -11px;\n            margin-left: -11px;\n\n            background-color: $color-yellow;\n        }\n    }\n\n    .chain {\n        width: 100px;\n        height: 0px;\n\n        border-top: 4px dashed $color-pink;\n\n        // box-shadow: 0 -4px 0 0 $color-white;\n\n        // &:hover {\n        //     border-top: 4px dashed $color-white;\n        //     box-shadow: 0 -4px 0 0 $color-pink;\n        // }\n\n        &--top {\n            width: 111px;\n            @include rotate(2deg);\n        }\n\n        &--bottom {\n            @include rotate(17deg);\n        }\n    }\n\n    .ground {\n        height: 4px;\n\n        // background-color: $color-blue;\n\n        @include border-radius(10px);\n\n        &--front {\n            width: 185px;\n\n            box-shadow: 0 4px 0 0 $color-pink;\n        }\n\n        &--back {\n            width: 100px;\n\n            box-shadow: 0 4px 0 0 $color-yellow;\n        }\n    }\n\n    .background {\n        top: 0;\n        right: 0;\n        bottom: 0;\n        left: 0;\n\n        .element {\n\n            position: absolute;\n\n            @include border-radius(10px);\n\n            &--line {\n                width: 100px;\n                height: 4px;\n                box-shadow: 0 4px 0 0;\n            }\n\n            &--x {\n                &:before, &:after {\n                    content: '';\n                    position: absolute;\n\n                    width: 16px;\n                    height: 4px;\n                    box-shadow: 0 4px 0 0;\n\n                    @include border-radius(10px);\n                }\n\n                &:before {\n                    left: -3px;\n                    @include rotate(-45deg);\n                }\n\n                &:after {\n                    left: 3px;\n                    @include rotate(45deg);\n                }\n            }\n\n            &--1 {\n                top: 3%;\n                right: 45%;\n\n                color: $color-yellow;\n            }\n\n            &--2 {\n                top: 40%;\n                left: 15%;\n\n                color: $color-pink;\n            }\n\n            &--3 {\n                top: 90%;\n                right: 45%;\n\n                color: $color-blue;\n            }\n\n            &--4 {\n                top: 30%;\n                left: 14%;\n\n                color: $color-pink;\n            }\n\n            &--5 {\n                top: 40%;\n                left: 40%;\n\n                color: $color-yellow;\n            }\n\n            &--6 {\n                top: 50%;\n                left: 10%;\n\n                color: $color-yellow;\n            }\n        }\n    }\n\n    // Animations\n\n    .css-rotate {\n        animation-name: rotate;\n        animation-duration: 3s;\n        animation-iteration-count: infinite;\n        animation-timing-function: linear;\n    }\n\n    .css-scroll {\n        animation-name: scroll;\n        animation-duration: 10s;\n        animation-iteration-count: infinite;\n        animation-timing-function: linear;\n    }\n\n}\n\n@keyframes :global(rotate) {\n    from {transform: rotate(0deg);}\n    to {transform: rotate(360deg);}\n}\n\n@keyframes :global(scroll) {\n    from {left: 200%; width: 200%}\n    to {left: -200%; width: 0%}\n}\n","$color-gray-blue: #D1D2D4;\n$color-yellow: #FED652;\n$color-blue: #009FE0;\n$color-pink: #EF5B75;\n\n@mixin border-radius($radius: 0) {\n\t-webkit-border-radius: $radius;\n\t-moz-border-radius:    $radius;\n\tborder-radius:         $radius;\n}\n\n@mixin rotate($amount) {\n\t//implied defaults\n\t-webkit-transform: rotate($amount);\n\t-moz-transform:    rotate($amount);\n\t-ms-transform:     rotate($amount);\n\t-o-transform:      rotate($amount);\n\ttransform:         rotate($amount);\n}\n"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ }),
+/* 61 */
 /*!*****************************!*\
   !*** external "react-intl" ***!
   \*****************************/
@@ -3289,7 +3607,7 @@ module.exports =
 	module.exports = require("react-intl");
 
 /***/ }),
-/* 59 */
+/* 62 */
 /*!********************************************!*\
   !*** external "react-intl/locale-data/fr" ***!
   \********************************************/
@@ -3298,7 +3616,7 @@ module.exports =
 	module.exports = require("react-intl/locale-data/fr");
 
 /***/ }),
-/* 60 */
+/* 63 */
 /*!***********************!*\
   !*** external "http" ***!
   \***********************/
