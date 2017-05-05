@@ -3,6 +3,8 @@ import { Route, IndexRoute, Redirect } from 'react-router';
 
 import App from './pages/App/';
 import HomePage from './pages/HomePage/';
+import AboutPage from './pages/AboutPage/';
+import CVPage from './pages/CVPage/'; 
 import GeneralPage from './pages/GeneralPage/';
 import LostPage from './pages/LostPage/';
 
@@ -23,9 +25,9 @@ export default function createRoutes(store) {
             onChange={() => store.dispatch(closeMenu())}
         >
             <IndexRoute component={HomePage} />
-            <Route path="about-me" component={GeneralPage} />
+            <Route path="about-me" component={AboutPage} />
             <Route path="what-i-do" component={GeneralPage} />
-            <Route path="curriculum-vitae" component={GeneralPage} />
+            <Route path="curriculum-vitae" component={CVPage} />
             <Route path="say-hello" component={GeneralPage} />
             <Route path="*" component={LostPage} />
         </Route>
