@@ -20,7 +20,8 @@ import style from './index.scss';
 
 class App extends Component {
 	render() {
-		const { children, menu, page } = this.props;
+		const { children, menu, page, location } = this.props;
+		const hasPage = Object.keys(page).length;
 		return (
 			<main className={style.html}>
 				<div className={ classNames((menu.open) ? [style.body, style.isactive] : style.body) }>
@@ -32,13 +33,15 @@ class App extends Component {
 						>
 							<html lang="en" />
 							<meta charSet="utf-8" />
-							{/* <base target="_blank" href={baseUrl} /> */}
+							{ /*
+								<base target="_blank" href={baseUrl} />
+							*/ }
 							<meta property="og:type" content="page" />
 							<link rel="icon" type="image/x-icon" href={favicon} />
 						</Helmet>
-						<Header { ...this.props } />
+						{(hasPage) ? <Header { ...this.props } /> : null}
 						<div className={ classNames(style.main, 'content') }>
-							{ React.cloneElement(children, { page }) }
+							{ (hasPage) ? React.cloneElement(children, { page }) : children }
 						</div>
 					</div>
 				</div>
