@@ -79,3 +79,12 @@
         }
     }
 }
+
+.square {
+    width: 100%;
+    &:after {
+        content: '';
+        display: block;
+        padding-bottom: 100%;
+    }
+}
