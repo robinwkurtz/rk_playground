@@ -19,7 +19,8 @@
 - [ ] Add in proper <head> with og/meta/seo tags
 - [ ] Add page transitions
 - [ ] Connect Menus so that one closes the other if already open
-- [ ] Add in colour pallette for personal selection!
+- [ ] Add in colour palette for personal selection!
 - [ ] Look into removing hard-coded API path
+- [ ] Close off wordpress API
 - [ ] Build out 'clean' branch
-- [ ] Have fun!
+- [x] Have fun!
