@@ -53,18 +53,22 @@ var configuration = {
 	progress: true,
 	resolve: {
 		alias: {
+			// Top Level
+			apiClient: rootDir + '/src/js/api-client.js',
+			config: rootDir + '/src/js/config.js',
+			lock: rootDir + '/src/js/lock.js',
+			// Redux
 			menu: rootDir + '/src/js/redux/modules/menu.js',
-			i18n: rootDir + '/src/js/redux/modules/i18n.js',
 			pages: rootDir + '/src/js/redux/modules/pages.js',
 			site: rootDir + '/src/js/redux/modules/site.js',
 			ssr: rootDir + '/src/js/redux/modules/ssr.js',
-			apiClient: rootDir + '/src/js/api-client.js',
-			config: rootDir + '/src/js/config.js',
-			loading: rootDir + '/src/js/components/Loading.js',
+			// Components
+			form: rootDir + '/src/js/components/Form/index.js',
 			header: rootDir + '/src/js/components/Header/index.js',
+			loading: rootDir + '/src/js/components/Loading.js',
 			navigation: rootDir + '/src/js/components/Navigation.js',
 			social: rootDir + '/src/js/components/Social/index.js',
-			languageSwitcher: rootDir + '/src/js/components/LanguageSwitcher.js',
+			// Styles
 			gstyles: rootDir + '/src/stylesheets/index.scss'
 		},
 		extensions: ['', '.json', '.js', '.jsx', '.css', '.scss']
