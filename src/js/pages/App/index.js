@@ -5,6 +5,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 import classNames from 'classnames';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 import config from 'config';
 import Loading from 'loading';
@@ -22,6 +23,7 @@ class App extends Component {
 	render() {
 		const { children, menu, page, location } = this.props;
 		const hasPage = Object.keys(page).length;
+		const slug = location.pathname.replace('/', '');
 		return (
 			<main className={style.html}>
 				<div className={ classNames((menu.open) ? [style.body, style.isactive] : style.body) }>
@@ -41,7 +43,13 @@ class App extends Component {
 						</Helmet>
 						{(hasPage) ? <Header { ...this.props } /> : null}
 						<div className={ classNames(style.main, 'content') }>
-							{ (hasPage) ? React.cloneElement(children, { page }) : children }
+							<CSSTransitionGroup
+								transitionName="fade"
+								transitionEnterTimeout={500}
+          						transitionLeaveTimeout={300}
+							>
+								{ (hasPage) ? React.cloneElement(children, { page, key: slug }) : children }
+							</CSSTransitionGroup>
 						</div>
 					</div>
 				</div>
