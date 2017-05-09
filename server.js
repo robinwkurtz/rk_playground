@@ -36,10 +36,10 @@ export default function server(parameters) {
         console.log(process.env.SMTPuser, process.env.SMTPpassword, process.env.SMTPhost, process.env.SMTPssl);
         const email = require('emailjs/email');
         const server = email.server.connect({
-            user: process.env.SMTPuser || SMTP.user,
-            password: process.env.SMTPpassword || SMTP.password,
-            host: process.env.SMTPhost || SMTP.host,
-            ssl: process.env.SMTPssl || SMTP.ssl
+            user: process.env.SMTPUSER || SMTP.user,
+            password: process.env.SMTPPASS || SMTP.password,
+            host: process.env.SMTPHOST || SMTP.host,
+            ssl: process.env.SMTPSSL || SMTP.ssl
         });
 
         // Build you html for email
