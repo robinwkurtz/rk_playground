@@ -1,0 +1,82 @@
+@import '../../../stylesheets/helpers/variables.scss';
+@import '../../../stylesheets/helpers/mixins.scss';
+@import '../../../stylesheets/helpers/grid.scss';
+
+.alert {
+    margin: 0 $width-gutter/2;
+}
+
+.form,
+form {
+
+    .wrapper {
+        position: relative;
+
+        margin-bottom: $width-gutter;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        @extend .row;
+
+        > .column,
+        > .columns {
+            margin-bottom: $width-gutter;
+        }
+
+        input, textarea {
+            width: 100%;
+
+            padding: $width-gutter/2;
+
+            background-color: transparent;
+            border: 4px solid $color-white;
+            color: $color-white;
+
+            font-family: $font-body;
+            font-weight: 600;
+            font-size: 100%;
+
+            @include appearance(none);
+            @include box-sizing(border-box);
+            @include transition(all 0.2s ease);
+
+            &:focus, &:hover {
+                background-color: rgba($color-alt, .5);
+                outline: 0;
+                @include transition(all 0.2s ease);
+            }
+
+            @include placeholder {
+                color: rgba($color-white, .75);
+                opacity: 1;
+            }
+
+            @include autofill {
+                // Hacky?
+                -webkit-box-shadow: 0 0 0px 1000px $color-alt inset;
+                -webkit-text-fill-color: $color-white !important;
+                // Not working?
+                background-color: $color-alt !important;
+                color: $color-white !important;
+            }
+
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+            max-height: 350px;
+        }
+
+        .error {
+            display: block;
+            margin-top: $width-gutter/4;
+
+            font-weight: 600;
+        }
+
+    }
+
+}
