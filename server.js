@@ -15,10 +15,9 @@ import Helmet from 'react-helmet';
 import makeStore from './src/js/redux/store';
 import createRoutes from './src/js/routes';
 
-// Le Français
-import { addLocaleData } from 'react-intl';
-import frLocaleData from 'react-intl/locale-data/fr';
-addLocaleData(frLocaleData);
+import bodyParser from 'body-parser';
+
+import { SMTP } from 'lock';
 
 export default function server(parameters) {
     const app = express();
@@ -27,6 +26,89 @@ export default function server(parameters) {
     if (__PROD__) {
         app.use('/assets', express.static('./build/assets'));
     }
+
+    // Adds support for JSON-encoded bodies used in POST requests
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({extended: true}));
+
+    // Processes the form submission
+    app.post('/send', function (req, res) {
+        const email = require('emailjs/email');
+        const server = email.server.connect({
+            user: process.env.SMTPuser || SMTP.user,
+            password: process.env.SMTPpassword || SMTP.password,
+            host: process.env.SMTPhost || SMTP.host,
+            ssl: process.env.SMTPssl || SMTP.ssl
+        });
+
+        // Build you html for email
+        const message = '<html><body>' +
+    		'<table width="700" border="0" cellspacing="0" cellpadding="0">' +
+    		'<tr><td>&nbsp;</td><td>&nbsp;</td></tr>' +
+    		'<tr>' +
+    		'<td width="250"><strong>First Name</strong></td>' +
+    		'<td width="450">' + req.body.fname + '</td>' +
+    		'</tr>' +
+    		'<tr><td>&nbsp;</td><td>&nbsp;</td></tr>' +
+            '<tr>' +
+    		'<td width="250"><strong>Last Name</strong></td>' +
+    		'<td width="450">' + req.body.lname + '</td>' +
+    		'</tr>' +
+            '<tr><td>&nbsp;</td><td>&nbsp;</td></tr>' +
+            '<tr>' +
+    		'<td width="250"><strong>Email</strong></td>' +
+    		'<td width="450">' + req.body.email + '</td>' +
+    		'</tr>' +
+            '<tr><td>&nbsp;</td><td>&nbsp;</td></tr>' +
+            '<tr>' +
+    		'<td width="250"><strong>Phone Number</strong></td>' +
+    		'<td width="450">' + req.body.phone + '</td>' +
+    		'</tr>' +
+            '<tr><td>&nbsp;</td><td>&nbsp;</td></tr>' +
+            '<tr>' +
+    		'<td width="250"><strong>Message</strong></td>' +
+    		'<td width="450">' + req.body.message + '</td>' +
+    		'</tr>' +
+            '<tr>' +
+    		'<td>&nbsp;</td>' +
+    		'</tr>' +
+    		'</table>' +
+    		'</html></body>';
+
+
+        // If required (string) is passed to POST
+        // Loop over values, if value.length < 1 then sendEmail = false
+        let sendEmail = true;
+        if (req.body.required) {
+            const requiredFields = req.body.required.split(',');
+            for (var i = 0; i < requiredFields.length; i++) {
+                const value = req.body[requiredFields[i]].trim();
+                if (value.length < 1) {
+                    sendEmail = false;
+                    break;
+                }
+            }
+        }
+
+        if (sendEmail) {
+            server.send({
+                'text': req.body,
+                'from': req.body.email,
+                'to': 'hello@robinwkurtz.com',
+                'reply-to': req.body.email,
+                'subject': `Contact Form Submission (${req.headers.host})`,
+                attachment: [{data: message, alternative: true}]
+            }, function(error) {
+                if (error) {
+                    return res.send({status: 'KO'});
+                } else {
+                    return res.send({status: 'OK'});
+                }
+            });
+        } else {
+            return res.send({status: 'ERROR'});
+        }
+    });
 
     /*
     This will be the most visited route of our application: it responds to all paths.
