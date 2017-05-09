@@ -56,6 +56,10 @@
         @include transition(all 0.2s ease);
     }
 
+    &:focus {
+        outline: 0;
+    }
+
     &:hover {
 
         top: 4px;
@@ -86,5 +90,41 @@
         content: '';
         display: block;
         padding-bottom: 100%;
+    }
+}
+
+.loading {
+    position: relative;
+
+    display: block;
+
+    width: 60px;
+    height: 60px;
+
+    border: 6px solid $color-dk-green;
+    border-radius: 50%;
+
+    box-sizing: border-box;
+
+    &:after {
+        content: '';
+
+        position: absolute;
+        top: -6px;
+        right: -6px;
+
+        display: block;
+        width: 60px;
+        height: 60px;
+        border: 6px solid $color-white;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        border-radius: 50%;
+
+        box-sizing: inherit;
+
+        @extend .css-spin;
+
     }
 }
