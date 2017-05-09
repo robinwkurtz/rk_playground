@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import { connect } from 'react-redux';
 
 /*
@@ -26,7 +26,7 @@ class Loading extends React.Component {
     const { show } = this.state;
 
     return (
-      <ReactCSSTransitionGroup
+      <CSSTransitionGroup
           transitionName="fade"
           transitionEnterTimeout={150}
           transitionLeaveTimeout={150}
@@ -39,7 +39,7 @@ class Loading extends React.Component {
             />
           </div>
         }
-      </ReactCSSTransitionGroup>
+      </CSSTransitionGroup>
     );
   }
 }
