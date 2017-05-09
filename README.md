@@ -17,6 +17,7 @@
 - [ ] Add project feed
 - [ ] Add contact form
 - [ ] Add in proper <head> with og/meta/seo tags
+- [ ] Add Google Analytics, possibly GTM
 - [ ] Add page transitions
 - [ ] Connect Menus so that one closes the other if already open
 - [ ] Add in colour palette for personal selection!
