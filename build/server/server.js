@@ -121,10 +121,10 @@ module.exports =
 	        console.log(({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPuser, ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPpassword, ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPhost, ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPssl);
 	        var email = __webpack_require__(/*! emailjs/email */ 68);
 	        var server = email.server.connect({
-	            user: ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPuser || _lock.SMTP.user,
-	            password: ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPpassword || _lock.SMTP.password,
-	            host: ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPhost || _lock.SMTP.host,
-	            ssl: ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPssl || _lock.SMTP.ssl
+	            user: ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPUSER || _lock.SMTP.user,
+	            password: ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPPASS || _lock.SMTP.password,
+	            host: ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPHOST || _lock.SMTP.host,
+	            ssl: ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPSSL || _lock.SMTP.ssl
 	        });
 	
 	        // Build you html for email
