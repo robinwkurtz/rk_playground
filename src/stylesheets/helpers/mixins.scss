@@ -22,6 +22,15 @@
 	-webkit-appearance: $appearance;
 }
 
+@mixin autofill {
+	&:-webkit-autofill,
+	&:-webkit-autofill:hover,
+	&:-webkit-autofill:focus
+	&:-webkit-autofill {
+		@content;
+	}
+}
+
 @mixin border-radius($radius: 0) {
 	-webkit-border-radius: $radius;
 	-moz-border-radius:    $radius;
