@@ -8,9 +8,10 @@ class LostPage extends Component {
 	render() {
 		const { page } = this.props;
 		const p = this.props.page.lost;
+		const title = p.title.rendered;
 		const content = { __html: p.content.rendered };
 		return (
-			<div className="row">
+			<div key={title} className="row">
 				<div
 					className="column"
 					dangerouslySetInnerHTML={content}

@@ -10,7 +10,7 @@ export default class AboutPage extends Component {
 		const title = p.title.rendered;
 		const content = { __html: p.content.rendered };
 		return (
-			<div className="row">
+			<div key={title} className="row">
 				<div className="column small-12 medium-4">
 					<div className={style.bioimage}>
 						<div>

@@ -6,12 +6,13 @@ export default class CVPage extends Component {
 		const path = location.pathname.replace(/^\/|\/$/g, '');
 		const p = page[path];
 		const title = p.title.rendered;
+		{ /* Ouch... */ }
 		const contentArray = p.content.rendered.split('[split]');
 		const content1 = { __html: contentArray[0].replace('</p>', '') };
 		const content2 = { __html: contentArray[1].replace('</p>', '') };
 		const content3 = { __html: contentArray[2].replace('</p>', '') };
 		return (
-			<div>
+			<div key={title}>
 				<div className="row">
 					<div
 						className="column small-12 medium-6 content"

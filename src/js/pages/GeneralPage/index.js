@@ -8,7 +8,7 @@ export default class GeneralPage extends Component {
 		const title = p.title.rendered;
 		const content = { __html: p.content.rendered };
 		return (
-			<div className="row">
+			<div key={title} className="row">
 				<div
 					className="column"
 					dangerouslySetInnerHTML={content}
