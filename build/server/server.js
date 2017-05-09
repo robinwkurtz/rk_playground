@@ -108,7 +108,7 @@ module.exports =
 	    var app = (0, _express2.default)();
 	    app.set('view engine', 'ejs');
 	
-	    if (false) {
+	    if (true) {
 	        app.use('/assets', _express2.default.static('./build/assets'));
 	    }
 	
@@ -120,10 +120,10 @@ module.exports =
 	    app.post('/send', function (req, res) {
 	        var email = __webpack_require__(/*! emailjs/email */ 68);
 	        var server = email.server.connect({
-	            user: ({"NODE_ENV":"development","BABEL_ENV":"development/server"}).SMTPuser || _lock.SMTP.user,
-	            password: ({"NODE_ENV":"development","BABEL_ENV":"development/server"}).SMTPpassword || _lock.SMTP.password,
-	            host: ({"NODE_ENV":"development","BABEL_ENV":"development/server"}).SMTPhost || _lock.SMTP.host,
-	            ssl: ({"NODE_ENV":"development","BABEL_ENV":"development/server"}).SMTPssl || _lock.SMTP.ssl
+	            user: ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPuser || _lock.SMTP.user,
+	            password: ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPpassword || _lock.SMTP.password,
+	            host: ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPhost || _lock.SMTP.host,
+	            ssl: ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPssl || _lock.SMTP.ssl
 	        });
 	
 	        // Build you html for email
@@ -215,7 +215,7 @@ module.exports =
 	                }).catch(function (err) {
 	                    console.error(err.stack);
 	                    res.status(500);
-	                    if (true) {
+	                    if (false) {
 	                        res.send(err.stack);
 	                    } else {
 	                        res.send('Server Error');
@@ -228,8 +228,8 @@ module.exports =
 	    });
 	
 	    var server = __webpack_require__(/*! http */ 69).createServer(app);
-	    var PORT = ({"NODE_ENV":"development","BABEL_ENV":"development/server"}).PORT || 3000;
-	    var IP = ({"NODE_ENV":"development","BABEL_ENV":"development/server"}).IP || '0.0.0.0';
+	    var PORT = ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).PORT || 3000;
+	    var IP = ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).IP || '0.0.0.0';
 	
 	    server.listen(PORT, IP, function (err) {
 	        if (err) {
@@ -375,7 +375,7 @@ module.exports =
 	    var reduxRouterMiddleware = (0, _reactRouterRedux.routerMiddleware)(history);
 	
 	    var middleware = [_reduxThunk2.default, reduxRouterMiddleware];
-	    if ((true) && __CLIENT__) {
+	    if (false) {
 	        middleware.push(logger);
 	    }
 	    var createStoreWithMiddleware = (0, _redux.compose)(_redux.applyMiddleware.apply(undefined, middleware), (typeof window === 'undefined' ? 'undefined' : _typeof(window)) === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : function (f) {
