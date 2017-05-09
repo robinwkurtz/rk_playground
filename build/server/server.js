@@ -118,6 +118,7 @@ module.exports =
 	
 	    // Processes the form submission
 	    app.post('/send', function (req, res) {
+	        console.log(({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPuser, ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPpassword, ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPhost, ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPssl);
 	        var email = __webpack_require__(/*! emailjs/email */ 68);
 	        var server = email.server.connect({
 	            user: ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPuser || _lock.SMTP.user,
