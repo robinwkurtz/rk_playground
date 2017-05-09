@@ -33,6 +33,7 @@ export default function server(parameters) {
 
     // Processes the form submission
     app.post('/send', function (req, res) {
+        console.log(process.env.SMTPuser, process.env.SMTPpassword, process.env.SMTPhost, process.env.SMTPssl);
         const email = require('emailjs/email');
         const server = email.server.connect({
             user: process.env.SMTPuser || SMTP.user,
