@@ -129,7 +129,7 @@
                     margin-top: 0;
                 }
 
-    			a {
+    			span, a {
                     color: $color-md-green;
 
                     font-size: $font-size-header-small;
@@ -138,7 +138,8 @@
                     text-decoration: none;
 
                     &:hover,
-                    &.active {
+                    &.active,
+                    &:global(.active) {
                         color: $color-dk-green;
                     }
                 }
