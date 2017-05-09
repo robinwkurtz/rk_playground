@@ -5,6 +5,7 @@ import App from './pages/App/';
 import HomePage from './pages/HomePage/';
 import AboutPage from './pages/AboutPage/';
 import CVPage from './pages/CVPage/';
+import ContactPage from './pages/ContactPage';
 import GeneralPage from './pages/GeneralPage/';
 import LostPage from './pages/LostPage/';
 
@@ -30,7 +31,7 @@ export default function createRoutes(store) {
             <Route path="about-me" component={AboutPage} />
             <Route path="what-i-do" component={GeneralPage} />
             <Route path="curriculum-vitae" component={CVPage} />
-            <Route path="say-hello" component={GeneralPage} />
+            <Route path="say-hello" component={ContactPage} />
             <Route path="playzone/bike" type="playzone" component={Bike} />
             <Route path="*" component={LostPage} />
         </Route>
