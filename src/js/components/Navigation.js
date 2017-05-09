@@ -3,7 +3,8 @@ import { Link } from 'react-router';
 
 export default class Navigation extends Component {
 	render() {
-		const { menu } = this.props;
+		const { menu, location } = this.props;
+		const currentPath = location.pathname.replace('/', '');
 		return (
 			<div>
 				{
@@ -13,9 +14,17 @@ export default class Navigation extends Component {
 								menu.data.items.map(
 								(item) => (
 									<li key={ item.id }>
-										<Link to={ `/${(item.object_slug === 'home') ? '' : item.object_slug}` }>
-											{ item.title }
-										</Link>
+										{
+											(currentPath === item.object_slug) ? (
+												<span className="active">
+													{ item.title }
+												</span>
+											) : (
+												<Link to={ `/${(item.object_slug === 'home') ? '' : item.object_slug}` }>
+													{ item.title }
+												</Link>
+											)
+										}
 									</li>
 								))
 							}
