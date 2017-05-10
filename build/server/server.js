@@ -129,7 +129,8 @@ module.exports =
 	            user: SMTPuser,
 	            password: SMTPpass,
 	            host: SMTPhost,
-	            ssl: SMTPssl
+	            ssl: SMTPssl,
+	            port: 465
 	        });
 	
 	        console.log(server);

@@ -44,7 +44,8 @@ export default function server(parameters) {
             user: SMTPuser,
             password: SMTPpass,
             host: SMTPhost,
-            ssl: SMTPssl
+            ssl: SMTPssl,
+            port: 465
         });
 
         console.log(server);
