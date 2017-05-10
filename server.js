@@ -44,9 +44,10 @@ export default function server(parameters) {
             user: SMTPuser,
             password: SMTPpass,
             host: SMTPhost,
-            ssl: SMTPssl,
+            ssl: true,
+            tls: true,
             port: 465,
-            timeout: 10000
+            timeout: 30000
         });
 
         console.log(server);
