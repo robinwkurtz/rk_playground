@@ -130,7 +130,8 @@ module.exports =
 	            password: SMTPpass,
 	            host: SMTPhost,
 	            ssl: SMTPssl,
-	            port: 465
+	            port: 465,
+	            timeout: 10000
 	        });
 	
 	        console.log(server);
