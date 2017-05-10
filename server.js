@@ -106,10 +106,12 @@ export default function server(parameters) {
                 'reply-to': req.body.email,
                 'subject': `Contact Form Submission (${req.headers.host})`,
                 attachment: [{data: message, alternative: true}]
-            }, function(error) {
+            }, function(error, message) {
                 if (error) {
+                    console.log(error);
                     return res.send({status: 'KO'});
                 } else {
+                    console.log(message);
                     return res.send({status: 'OK'});
                 }
             });
