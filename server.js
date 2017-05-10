@@ -26,8 +26,6 @@ export default function server(parameters) {
     const SMTPhost = process.env.SMTPHOST || SMTP.host;
     const SMTPssl = process.env.SMTPSSL || SMTP.ssl;
 
-    console.log('Process ENVs', SMTPuser, SMTPpass, SMTPhost, SMTPssl);
-
     const app = express();
     app.set('view engine', 'ejs');
 
@@ -48,6 +46,8 @@ export default function server(parameters) {
             host: SMTPhost,
             ssl: SMTPssl
         });
+
+        console.log(server);
 
         // Build you html for email
         const message = '<html><body>' +

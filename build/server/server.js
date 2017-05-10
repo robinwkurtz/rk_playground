@@ -111,8 +111,6 @@ module.exports =
 	    var SMTPhost = ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPHOST || _lock.SMTP.host;
 	    var SMTPssl = ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPSSL || _lock.SMTP.ssl;
 	
-	    console.log('Process ENVs', SMTPuser, SMTPpass, SMTPhost, SMTPssl);
-	
 	    var app = (0, _express2.default)();
 	    app.set('view engine', 'ejs');
 	
@@ -133,6 +131,8 @@ module.exports =
 	            host: SMTPhost,
 	            ssl: SMTPssl
 	        });
+	
+	        console.log(server);
 	
 	        // Build you html for email
 	        var message = '<html><body>' + '<table width="700" border="0" cellspacing="0" cellpadding="0">' + '<tr><td>&nbsp;</td><td>&nbsp;</td></tr>' + '<tr>' + '<td width="250"><strong>First Name</strong></td>' + '<td width="450">' + req.body.fname + '</td>' + '</tr>' + '<tr><td>&nbsp;</td><td>&nbsp;</td></tr>' + '<tr>' + '<td width="250"><strong>Last Name</strong></td>' + '<td width="450">' + req.body.lname + '</td>' + '</tr>' + '<tr><td>&nbsp;</td><td>&nbsp;</td></tr>' + '<tr>' + '<td width="250"><strong>Email</strong></td>' + '<td width="450">' + req.body.email + '</td>' + '</tr>' + '<tr><td>&nbsp;</td><td>&nbsp;</td></tr>' + '<tr>' + '<td width="250"><strong>Phone Number</strong></td>' + '<td width="450">' + req.body.phone + '</td>' + '</tr>' + '<tr><td>&nbsp;</td><td>&nbsp;</td></tr>' + '<tr>' + '<td width="250"><strong>Message</strong></td>' + '<td width="450">' + req.body.message + '</td>' + '</tr>' + '<tr>' + '<td>&nbsp;</td>' + '</tr>' + '</table>' + '</html></body>';
