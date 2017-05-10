@@ -105,6 +105,14 @@ module.exports =
 	global.__SERVER__ = true;
 	
 	function server(parameters) {
+	
+	    var SMTPuser = ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPUSER || _lock.SMTP.user;
+	    var SMTPpass = ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPPASS || _lock.SMTP.password;
+	    var SMTPhost = ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPHOST || _lock.SMTP.host;
+	    var SMTPssl = ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPSSL || _lock.SMTP.ssl;
+	
+	    console.log('Process ENVs', SMTPuser, SMTPpass, SMTPhost, SMTPssl);
+	
 	    var app = (0, _express2.default)();
 	    app.set('view engine', 'ejs');
 	
@@ -118,13 +126,12 @@ module.exports =
 	
 	    // Processes the form submission
 	    app.post('/send', function (req, res) {
-	        console.log(({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPuser, ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPpassword, ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPhost, ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPssl);
 	        var email = __webpack_require__(/*! emailjs/email */ 68);
 	        var server = email.server.connect({
-	            user: ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPUSER || _lock.SMTP.user,
-	            password: ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPPASS || _lock.SMTP.password,
-	            host: ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPHOST || _lock.SMTP.host,
-	            ssl: ({"NODE_ENV":"production","BABEL_ENV":"production/server"}).SMTPSSL || _lock.SMTP.ssl
+	            user: SMTPuser,
+	            password: SMTPpass,
+	            host: SMTPhost,
+	            ssl: SMTPssl
 	        });
 	
 	        // Build you html for email

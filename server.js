@@ -20,6 +20,14 @@ import bodyParser from 'body-parser';
 import { SMTP } from 'lock';
 
 export default function server(parameters) {
+
+    const SMTPuser = process.env.SMTPUSER || SMTP.user;
+    const SMTPpass = process.env.SMTPPASS || SMTP.password;
+    const SMTPhost = process.env.SMTPHOST || SMTP.host;
+    const SMTPssl = process.env.SMTPSSL || SMTP.ssl;
+
+    console.log('Process ENVs', SMTPuser, SMTPpass, SMTPhost, SMTPssl);
+
     const app = express();
     app.set('view engine', 'ejs');
 
@@ -33,13 +41,12 @@ export default function server(parameters) {
 
     // Processes the form submission
     app.post('/send', function (req, res) {
-        console.log(process.env.SMTPuser, process.env.SMTPpassword, process.env.SMTPhost, process.env.SMTPssl);
         const email = require('emailjs/email');
         const server = email.server.connect({
-            user: process.env.SMTPUSER || SMTP.user,
-            password: process.env.SMTPPASS || SMTP.password,
-            host: process.env.SMTPHOST || SMTP.host,
-            ssl: process.env.SMTPSSL || SMTP.ssl
+            user: SMTPuser,
+            password: SMTPpass,
+            host: SMTPhost,
+            ssl: SMTPssl
         });
 
         // Build you html for email
