@@ -16,7 +16,7 @@
     "prod:build-server": "webpack --config ./webpack/webpack.config.server.prod.js ",
     "prod:build-client": "webpack --config ./webpack/webpack.config.client.prod.js ",
     "prod:run-server": "pm2 start --no-daemon ./start-prod-server.js",
-    "prod:start-server": "node --max_old_space_size=40 start-server.js",
+    "prod:start-server": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 start-server.js",
     "prod": "npm run prod:build-server & npm run prod:build-client & npm run prod:run-server"
   },
   "repository": {
