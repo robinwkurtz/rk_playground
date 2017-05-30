@@ -17,10 +17,7 @@ import createRoutes from './src/js/routes';
 
 import bodyParser from 'body-parser';
 
-if (process.env === 'dev') {
-    console.log(process.env);
-    import { SMTP } from 'lock';
-}
+// import { SMTP } from 'lock';
 
 export default function server(parameters) {
 
