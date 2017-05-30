@@ -17,7 +17,7 @@
     "prod:build-client": "webpack --config ./webpack/webpack.config.client.prod.js ",
     "prod:run-server": "pm2 start --no-daemon ./start-prod-server.js",
     "prod:start-server": "node start-server.js",
-    "prod": "npm-run-all --print-label prod:*"
+    "prod": "npm-run-all --sequential prod:*"
   },
   "repository": {
     "type": "git",
