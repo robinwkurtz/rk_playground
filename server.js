@@ -17,9 +17,6 @@ import createRoutes from './src/js/routes';
 
 import bodyParser from 'body-parser';
 
-import heapdump from 'heapdump';
-heapdump.writeSnapshot('/var/local/' + Date.now() + '.heapsnapshot');
-
 import { SMTP } from 'lock';
 
 export default function server(parameters) {
