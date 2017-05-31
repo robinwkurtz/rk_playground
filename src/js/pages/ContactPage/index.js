@@ -19,16 +19,7 @@ export default class ContactPage extends Component {
 					/>
 				</div>
 				<div className="row">
-					<CSSTransitionGroup
-						transitionName="fade"
-						transitionAppear={true}
-						transitionAppearTimeout={500}
-						transitionEnter={true}
-						transitionLeave={true}
-						className="transition-parent"
-					>
-						<Form />
-					</CSSTransitionGroup>
+					<Form />
 				</div>
 			</div>
 		);

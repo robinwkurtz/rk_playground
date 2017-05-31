@@ -96,23 +96,19 @@
 
 :global {
     .fade-enter {
-        background-color: red;
     	opacity: 0.01;
     }
 
     .fade-enter.fade-enter-active {
-        background-color: pink;
     	opacity: 1;
     	transition: opacity 0.2s ease-in;
     }
 
     .fade-leave {
-        background-color: blue;
     	opacity: 1;
     }
 
     .fade-leave.fade-leave-active {
-        background-color: lightblue;
     	opacity: 0.01;
     	transition: opacity 0.2s ease-in;
     }
